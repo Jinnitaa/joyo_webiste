@@ -1,0 +1,124 @@
+@import url('https://fonts.googleapis.com/css2?family=Libre+Franklin:ital,wght@0,100..900;1,100..900&display=swap');
+.navbar {
+  background-color: #111111;
+  padding: 20px 30px;
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+  margin-right: 100px;
+  margin-left: 50px;
+}
+
+.logo {
+  color: white;
+  font-size: 1.5rem;
+}
+
+.menu-icon {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  display: none;
+}
+
+.nav-links {
+  list-style: none; 
+  padding: 0;
+  display: flex;
+  gap: 20px;
+}
+
+.nav-links li {
+  padding: 0; 
+}
+
+.nav-links li a {
+  color: white;
+  text-decoration: none;
+  font-family: 'Libre Franklin', sans-serif;
+  font-size: 16px;
+  padding: 20px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Apply hover effect for all links */
+.nav-links li a:hover {
+  background-color: green; 
+  color: white; 
+}
+
+.dropdown {
+  position: relative;
+  z-index: 1; 
+}
+
+.dropdown-menu {
+  display: none; 
+  position: absolute;
+  background-color: white; 
+  padding: 10px;
+  top: 100%;
+  left: 0;
+  min-width: 280px;
+  border-radius: 5px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); 
+  z-index: 2;
+  list-style: none;
+}
+
+.dropdown-menu li a {
+  color: black; 
+  text-decoration: none;
+  padding: 8px;
+  display: block;
+  border-radius: 5px; 
+  transition: background-color 0.3s ease; 
+  font-size:14px;
+  
+}
+
+/* Hover effect for links inside dropdown */
+.dropdown-menu li a:hover {
+  background-color: green;
+  color: white; 
+}
+
+.dropdown:hover .dropdown-menu {
+  display: block; 
+}
+
+@media (max-width: 768px) {
+  .menu-icon {
+    display: block;
+  }
+
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    background: #333;
+    position: absolute;
+    top: 50px;
+    left: 0;
+    width: 100%;
+    padding: 10px;
+    z-index: 1; 
+  }
+
+  .nav-links.open {
+    display: flex;
+  }
+
+  
+  .dropdown-menu {
+    left: 0; 
+    position: static;
+  }
+
+  .dropdown:hover .dropdown-menu {
+    display: block; 
+  }
+}

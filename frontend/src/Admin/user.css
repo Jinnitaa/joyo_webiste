@@ -1,0 +1,15 @@
+.form-control {
+    position: static;  /* Ensure it's placed normally in the flow of the document */
+    pointer-events: auto;  
+  }
+
+  .overlay, .modal {
+    display: none;
+  }
+
+  input {
+    position: relative;
+    z-index: 100;
+    opacity: 1;
+    visibility: visible;
+  }

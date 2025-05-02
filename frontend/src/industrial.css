@@ -1,0 +1,126 @@
+.h2{
+  padding-bottom: 25px;
+}
+
+.grey-line {
+    width: 80%;
+    height: 10px; 
+    background-color: rgb(222, 227, 225);
+    border-radius: 5px; 
+    margin: 20px auto; 
+  }
+
+  .features-container2 .text-section{
+    margin-top:80px; 
+   width:82%;
+   margin-left: 80px;
+  }
+
+  .industrial_text {
+    width: 100%; 
+    display: flex;
+    justify-content: center;
+    color: #0C0C0C;
+}
+  .industrial_text h2{
+    text-align:center;
+    margin-left: 70px;
+  }
+
+
+  .diagram-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+    position: relative;
+  }
+  
+  .image-container {
+    flex: 1;
+  }
+  
+  .diagram-image {
+    width: 100%;
+    display: block;
+  }
+  
+  .text-container {
+    flex: 1;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+  
+  .text-point {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .text-point p {
+    font-size: 20px;
+    font-weight: 400;
+  }
+  
+  .text-point {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .icon-img {
+    width: 50px; 
+    height: auto;
+  }
+
+  .switcher-container {
+    text-align: center;
+    margin-top: 20px;
+    cursor: pointer;
+  }
+  
+  .switcher-image {
+    width: 900px;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .switcher-image:hover {
+    transform: scale(1.1);
+  }
+  
+  .switcher-text {
+    font-size: 20px;
+    margin-top: 10px;
+    color: #0C0C0C;
+    font-weight : 300px;;
+  }
+  
+  @media (max-width: 768px) {
+    
+    .diagram-wrapper {
+      flex-direction: column;
+      gap: 20px;
+    }
+  
+    .image-container {
+      width: 100%;
+      text-align: center;
+    }
+  
+    .text-container {
+      width: 100%;
+      gap: 20px;
+    }
+  
+    .text-point {
+      flex-direction: column;
+      text-align: center;
+    }
+  
+    .line {
+      display: none;
+    }
+  }
+  

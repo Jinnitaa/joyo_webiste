@@ -1,0 +1,143 @@
+/* General container for all cards */
+.case-cards-section {
+  padding: 4rem 2rem;
+  background: #f9f9f9;
+}
+
+/* Wrapper to flex cards */
+.case-cards-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+}
+
+/* Each individual card */
+.case-card {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  width: 48%;
+  overflow: hidden;
+  min-height: 220px;
+}
+
+/* Image section */
+.case-card-image {
+  flex: 1;
+  min-width: 250px;
+}
+
+.case-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Text Content section */
+.case-card-content {
+  flex: 2;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Green line */
+.green-line {
+  width: 50px;
+  height: 4px;
+  background-color: #4CAF50;
+  margin-bottom: 1rem;
+}
+
+/* Green Title */
+.green-title {
+  color: #4CAF50;
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+/* Main heading (optional if you want company name again bigger) */
+.case-card-heading {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+.solar-title {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 600;
+  margin: 40px 0 20px;
+  color: #1a4d2e; /* dark green */
+  position: relative;
+}
+
+.solar-title::after {
+  content: "";
+  display: block;
+  width: 200px;
+  height: 4px;
+  background-color: #4caf50;
+  margin: 10px auto 0;
+  border-radius: 2px;
+}
+
+/* ----------------- RESPONSIVE DESIGN ----------------- */
+
+/* Tablet (768px and below) */
+@media (max-width: 768px) {
+  .case-cards-wrapper {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .case-card {
+    width: 80%;
+    flex-direction: column;
+    min-height: auto;
+  }
+
+  .case-card-image {
+    min-width: 100%;
+    height: 200px; /* Set height for images on tablet */
+  }
+
+  .case-card-content {
+    padding: 1rem;
+  }
+}
+
+/* Phone (480px and below) */
+@media (max-width: 480px) {
+  .case-card {
+    width: 90%;
+    flex-direction: column;
+    min-height: auto;
+  }
+
+  .case-card-image {
+    min-width: 100%;
+    height: 180px; /* Smaller height for phones */
+  }
+
+  .solar-title {
+    font-size: 1.5rem;
+  }
+
+  .solar-title::after {
+    width: 120px;
+  }
+
+  .green-title {
+    font-size: 1rem;
+  }
+
+  .case-card-content {
+    padding: 0.8rem;
+  }
+}

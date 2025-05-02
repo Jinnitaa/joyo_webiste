@@ -1,0 +1,10 @@
+.text-section p{
+    font-size:18px;
+    text-align: justify;
+}
+
+.solar-diagram{
+    width:1000px;
+    margin: 0 auto; 
+    display: block;
+}

@@ -1,0 +1,74 @@
+.admin_nav {
+  width: 90px;
+  height: 100vh;
+  background: #fff;
+  transition: width 0.3s ease-in-out;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+}
+  
+  .admin_nav:hover {
+    width: 260px;
+  }
+  
+  .admin_nav nav {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow-y: auto;
+  }
+  
+  .admin_nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .admin_nav li {
+    display: flex;
+    align-items: center;
+  }
+  
+  .admin_nav .logo {
+    text-align: center;
+    font-weight: bold;
+    font-size: 18px;
+    padding: 20px;
+    color: #2DB8ED;
+  }
+  
+  .admin_nav a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    padding: 12px;
+    color: #2DB8ED;
+    font-size: 16px;
+    font-family: "Poppins", sans-serif;
+    transition: 0.3s;
+  }
+  
+  .admin_nav a .icon {
+    font-size: 20px;
+    width: 50px;
+    text-align: center;
+    transition: 0.3s;
+  }
+  
+  .admin_nav a:hover,
+  .admin_nav .active {
+    background: #f7ce3e;
+    color: white;
+  }
+  
+  .admin_nav a:hover .icon,
+  .admin_nav .active .icon {
+    color: white;
+  }
+  
+  .logout {
+    margin-top: auto;
+  }
+  

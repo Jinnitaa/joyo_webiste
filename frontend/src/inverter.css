@@ -1,0 +1,163 @@
+.inverter-text {
+  background-color: rgba(0, 0, 0, 0.6); /* translucent dark background */
+  color: white;
+  padding: 30px;
+  border-radius: 12px;
+  max-width: 800px;
+  margin-left: 200px;
+}
+
+.inverter-text h2 {
+  font-size: 28px;
+  margin-bottom: 20px;
+  color: white;
+}
+
+.inverter-text p {
+  font-size: 16px;
+  line-height: 1.6;
+  color: white;
+}
+
+/* 📱 Phones (max-width: 767px) */
+@media (max-width: 767px) {
+  .inverter-text {
+    margin-left: 0;
+    padding: 20px;
+    max-width: 100%;
+  }
+
+  .inverter-text h2 {
+    font-size: 22px;
+  }
+
+  .inverter-text p {
+    font-size: 14px;
+  }
+}
+
+/* 💻 Tablets (768px to 1024px) */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .inverter-text {
+    margin-left: 0;
+    padding: 25px;
+    max-width: 90%;
+  }
+
+  .inverter-text h2 {
+    font-size: 24px;
+  }
+
+  .inverter-text p {
+    font-size: 15px;
+  }
+}
+
+/* Products Section */
+.products-section {
+  width: 100%;
+  padding: 40px 80px;
+  background-color: #fff;
+  text-align: center;
+}
+
+.products-title {
+  font-size: 32px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.products-line {
+  height: 2px;
+  background-color: #ddd;
+  width: 60%;
+  margin: 20px auto;
+}
+
+/* Set grid to display 3 cards per row */
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 columns per row */
+  gap: 20px;
+  padding: 20px;
+}
+
+/* Product Card */
+.product-card {
+  background-color: #f8f8f8;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.product-image {
+  width: 250px;  /* Set a specific width */
+  height: 250px; /* Set a specific height */
+  border-radius: 8px;
+  object-fit: cover; /* Ensure the image covers the defined area without distortion */
+  margin: 0 auto; /* Center the image */
+}
+.product-name {
+  font-size: 20px;
+  margin-top: 15px;
+  font-weight: 600;
+}
+
+.product-desc {
+  font-size: 16px;
+  color: #777;
+  margin-top: 10px;
+  line-height: 1.4;
+}
+
+/* 📱 Phones (max-width: 767px) */
+@media (max-width: 767px) {
+  .inverter-text {
+    margin-left: 0;
+    padding: 20px;
+    max-width: 100%;
+  }
+
+  .inverter-text h2 {
+    font-size: 22px;
+  }
+
+  .inverter-text p {
+    font-size: 14px;
+  }
+
+  /* For phones, show 1 product per row */
+  .products-grid {
+    grid-template-columns: 1fr; /* 1 column per row */
+  }
+}
+
+/* 💻 Tablets (768px to 1024px) */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .inverter-text {
+    margin-left: 0;
+    padding: 25px;
+    max-width: 90%;
+  }
+
+  .inverter-text h2 {
+    font-size: 24px;
+  }
+
+  .inverter-text p {
+    font-size: 15px;
+  }
+
+  /* For tablets, show 2 products per row */
+  .products-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 columns per row */
+  }
+}
+
+/* For larger screens (desktop), show 3 products per row (default) */
+@media (min-width: 1025px) {
+  .products-grid {
+    grid-template-columns: repeat(3, 1fr); /* 3 columns per row */
+  }
+}
