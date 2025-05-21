@@ -5,7 +5,7 @@ import Sidebar from './Sidebar';
 import { RxHamburgerMenu } from 'react-icons/rx';
 import { IoIosCloudUpload } from 'react-icons/io';
 import { useNavigate } from 'react-router-dom';
-
+const baseURL = process.env.REACT_APP_API_BASE_URL;
 const CaseCreateForm = () => {
   const [caseData, setCaseData] = useState({
     location: '',
@@ -15,57 +15,42 @@ const CaseCreateForm = () => {
     annualGeneration: '',
     saveStandardCoal: '',
     reductionOfEmission: '',
-    image: null, // will store the image file
   });
 
+  const [image, setImage] = useState(null);
   const [isSidebarOpen, setSidebarOpen] = useState(true);
   const navigate = useNavigate();
 
   const toggleSidebar = () => setSidebarOpen(!isSidebarOpen);
 
-  // Handle input changes
   const handleChange = (e) => {
     setCaseData({ ...caseData, [e.target.name]: e.target.value });
   };
 
-  // Handle image input change
   const handleImageChange = (e) => {
-    setCaseData({ ...caseData, image: e.target.files[0] });
+    setImage(e.target.files[0]);
   };
 
-  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Log the data being sent for debugging
-    console.log("Data being sent to backend:", caseData);
-
     const formData = new FormData();
-    Object.keys(caseData).forEach((key) => {
-      const value = caseData[key];
-      if (key === 'image' && value === null) {
-        formData.append(key, '');  // Append empty if no image
-      } else {
-        formData.append(key, value);
-      }
+    Object.entries(caseData).forEach(([key, value]) => {
+      formData.append(key, value);
     });
 
-    // Log the FormData for debugging purposes
-    for (let pair of formData.entries()) {
-      console.log(pair[0] + ': ' + pair[1]);
+    if (image) {
+      formData.append('image', image);
     }
 
-      try {
-        await axios.post('http://localhost:5000/api/cases/createCase', formData, {
-          headers: { 'Content-Type': 'multipart/form-data' },
-        });
-
-      // On success, navigate to the case list
+    try {
+      await axios.post(`${baseURL}/api/cases/createCase`, formData, {
+        headers: { 'Content-Type': 'multipart/form-data' },
+      });
       alert('Case Created Successfully');
       navigate('/cms/caseList');
     } catch (error) {
-      // Handle any errors and display message
-      console.error('Error creating case:', error.response?.data || error.message);
+      console.error('Error creating case:', error);
       alert(error.response?.data?.message || 'Error creating case. Please try again later.');
     }
   };
@@ -88,7 +73,7 @@ const CaseCreateForm = () => {
             <small>Fill in the details to create a new case</small>
           </div>
 
-          <form onSubmit={handleSubmit} className="product-form">
+          <form onSubmit={handleSubmit} className="product-form" encType="multipart/form-data">
             <div className="form-left">
               <h4>Location:</h4>
               <input
@@ -123,7 +108,6 @@ const CaseCreateForm = () => {
                 name="investmentAmount"
                 value={caseData.investmentAmount}
                 onChange={handleChange}
-                required
               />
             </div>
 
@@ -134,7 +118,6 @@ const CaseCreateForm = () => {
                 name="annualGeneration"
                 value={caseData.annualGeneration}
                 onChange={handleChange}
-                required
               />
 
               <h4>Saved Standard Coal:</h4>
@@ -143,7 +126,6 @@ const CaseCreateForm = () => {
                 name="saveStandardCoal"
                 value={caseData.saveStandardCoal}
                 onChange={handleChange}
-                required
               />
 
               <h4>Reduction of Emission:</h4>
@@ -152,7 +134,6 @@ const CaseCreateForm = () => {
                 name="reductionOfEmission"
                 value={caseData.reductionOfEmission}
                 onChange={handleChange}
-                required
               />
 
               <h4>Upload Image (optional):</h4>
@@ -170,6 +151,7 @@ const CaseCreateForm = () => {
                 >
                   <IoIosCloudUpload style={{ color: '#28a745', fontSize: '36px' }} />
                   <p>Click to Upload Image</p>
+                  {image && <p style={{ marginTop: '10px' }}><strong>Selected:</strong> {image.name}</p>}
                 </div>
               </div>
 

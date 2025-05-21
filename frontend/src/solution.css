@@ -198,13 +198,14 @@
   .benefit-number {
     font-size: 40px;
     font-weight: bold;
-    color: green;
+    color: #27B964;
     margin-right: 10px;
   }
   
   .benefit-text {
     font-size: 16px;
     font-weight: 500;
+    color: #555
   }
   
 
@@ -280,11 +281,11 @@
 .phases-title { 
   font-size: 18px;
   font-weight: bold;
-  color: #0D8B08;
+  color: #27B964;
 }
 
 .phases-description {
-  font-size: 14px;
+  font-size: 16px;
   color: #555;
 }
 
@@ -330,6 +331,9 @@
   align-items: center;
   gap: 10px;
   margin-bottom: 15px;
+  color:#555;
+  font-weight: 500;
+  font-size: 16px;
 }
 
 .check-icon {
@@ -338,7 +342,7 @@
 }
 
 .contact-button {
-  background: #007f00;
+  background: #27B964;
   color: white;
   border: none;
   padding: 10px 20px;

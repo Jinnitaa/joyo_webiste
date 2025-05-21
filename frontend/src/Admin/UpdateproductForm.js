@@ -7,7 +7,7 @@ import { MdDelete, MdAdd } from 'react-icons/md';
 import { RiAddCircleLine } from "react-icons/ri";
 import { IoIosCloudUpload } from "react-icons/io";
 import { useNavigate, useParams } from 'react-router-dom';
-
+const baseURL = process.env.REACT_APP_API_BASE_URL;
 const ProductUpdateForm = () => {
   const [product, setProduct] = useState({
     name: '',
@@ -29,7 +29,7 @@ const ProductUpdateForm = () => {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/api/products/${id}`);
+        const response = await axios.get(`${baseURL}/api/products/${id}`);
         setProduct(response.data); // Assuming the response is in the form of a product object
       } catch (error) {
         console.error('Error fetching product:', error);
@@ -117,7 +117,7 @@ const ProductUpdateForm = () => {
     formData.append('functions', JSON.stringify(product.function));
 
     try {
-      await axios.put(`http://localhost:5000/api/products/${id}`, formData, {
+      await axios.put(`${baseURL}/api/products/${id}`, formData, {
         headers: { 'Content-Type': 'multipart/form-data' }
       });
 

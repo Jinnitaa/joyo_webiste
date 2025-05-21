@@ -28,7 +28,7 @@ const Commercial = () => {
          <div className="text-overlay2" data-aos="fade-up">
           <h2>Commercial Solar Installation</h2>
           <p>Save The Earth While Unlocking Greater Cost Savings. Install solar panels, inverter and batteries at your home. Save costs and sell back surplus electricity back to the grid.</p>
-          {/* Button */}
+          <br></br>{/* Button */}
         <button className="solar-button">Get a Free Quote</button>
         </div>
 

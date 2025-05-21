@@ -18,9 +18,9 @@
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   display: flex;
-  width: 48%;
+  width: 45%;
   overflow: hidden;
-  min-height: 220px;
+  height:300px;
 }
 
 /* Image section */
@@ -44,6 +44,37 @@
   justify-content: center;
 }
 
+.case-card-content {
+  position: relative; /* needed for absolute positioning inside */
+  flex: 2;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Number in green rectangle at top right corner */
+.corner-number {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background-color: #4CAF50; /* green */
+  color: white;
+  font-weight: 700;
+  font-size: 14px;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  box-shadow: 0 0 5px rgba(0,0,0,0.15);
+  user-select: none;
+}
+
+.case-card-content p{
+  font-size:14px;
+}
 /* Green line */
 .green-line {
   width: 50px;
@@ -55,7 +86,7 @@
 /* Green Title */
 .green-title {
   color: #4CAF50;
-  font-size: 1.2rem;
+  font-size: 16px;
   margin-bottom: 1rem;
   font-weight: 600;
   text-transform: uppercase;
@@ -109,6 +140,7 @@
 
   .case-card-content {
     padding: 1rem;
+    font-size:14px;
   }
 }
 

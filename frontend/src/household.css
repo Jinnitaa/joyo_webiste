@@ -180,62 +180,66 @@ input:not(:checked)+label+.ci {
 }
 
 
-@media screen and (max-width: 1024px) {
+@media (max-width: 991px) {
   .c {
-    width: 80%;  
-    height: 300px;
+    height: 350px;
+    padding: 15px;
   }
 
   .ch {
-    width: 60%; 
+    width: 80%;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 0.9rem;
+    text-align: center;
+  }
+
+  .ch h2 {
+    font-size: 1.2rem;
+  }
+
+  .ch p {
     font-size: 0.9rem;
   }
 
   label {
-    width: 12%; 
+    width: 15%;
+    height: 8px;
   }
 }
 
-@media screen and (max-width: 768px) {
+/* Phone styles (screen width ≤ 576px) */
+@media (max-width: 576px) {
   .c {
-    width: 90%; 
-    height: 250px; 
+    height: 300px;
+    padding: 10px;
   }
 
   .ch {
-    width: 30%; 
-    font-size: 14px ; 
-    margin-right:10px;
+    width: 90%;
+    top: 50%;
+    font-size: 0.8rem;
+    padding: 5px;
   }
 
-  label {
-    width: 15%; 
-    width: 20%; 
-  }
-}
-
-
-@media screen and (max-width: 480px) {
-  .c {
-    width: 100%;  
-    height: 200px; 
-
+  .ch h2 {
+    font-size: 1rem;
   }
 
-  .ch {
-    width: 40%;  
-    font-size: 12px ; 
-    left: -100px;
-    text-align:center;
-  }
-
-  label {
-  
-    height: 15px; 
+  .ch p {
+    font-size: 0.8rem;
   }
 
   .ci img {
-    object-position: center;  
+    object-fit: cover;
+    object-position: center;
+  }
+
+  label {
+    width: 18%;
+    height: 6px;
+    margin-right: 2px;
   }
 }
 

@@ -3,11 +3,10 @@ import axios from 'axios';
 import './case.css';
 import Sidebar from './Sidebar';
 import { RxHamburgerMenu } from 'react-icons/rx';
-import { MdDelete, MdAdd } from 'react-icons/md';
-import { RiAddCircleLine } from "react-icons/ri";
 import { IoIosCloudUpload } from "react-icons/io";
 import { useNavigate, useParams } from 'react-router-dom';
 
+const baseURL = process.env.REACT_APP_API_BASE_URL;
 const CaseUpdateForm = () => {
   const [caseData, setCaseData] = useState({
     location: '',
@@ -17,9 +16,9 @@ const CaseUpdateForm = () => {
     annualGeneration: '',
     saveStandardCoal: '',
     reductionOfEmission: '',
-    image: null,
+  
   });
-
+  
   const [isSidebarOpen, setSidebarOpen] = useState(true);
   const navigate = useNavigate();
   const { id } = useParams();  // Case ID from URL params
@@ -30,7 +29,7 @@ const CaseUpdateForm = () => {
    useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/api/cases/${id}`);
+        const response = await axios.get(`${baseURL}/api/cases/${id}`);
         setCaseData(response.data); 
       } catch (error) {
         console.error('Error fetching product:', error);
@@ -65,7 +64,7 @@ const CaseUpdateForm = () => {
     if (caseData.image) formData.append('image', caseData.image);
 
     try {
-      await axios.put(`http://localhost:5000/api/caseUpdate/${id}`, formData, {
+      await axios.put(`${baseURL}/api/caseUpdate/${id}`, formData, {
         headers: { 'Content-Type': 'multipart/form-data' }
       });
 
@@ -107,18 +106,18 @@ const CaseUpdateForm = () => {
               <input type="text" name="installedCapacity" value={caseData.installedCapacity} onChange={handleChange} required />
 
               <h4>Investment Amount:</h4>
-              <input type="text" name="investmentAmount" value={caseData.investmentAmount} onChange={handleChange} required />
+              <input type="text" name="investmentAmount" value={caseData.investmentAmount} onChange={handleChange}  />
 
               <h4>Annual Generation:</h4>
-              <input type="text" name="annualGeneration" value={caseData.annualGeneration} onChange={handleChange} required />
+              <input type="text" name="annualGeneration" value={caseData.annualGeneration} onChange={handleChange}  />
 
               <h4>Save Standard Coal:</h4>
-              <input type="text" name="saveStandardCoal" value={caseData.saveStandardCoal} onChange={handleChange} required />
+              <input type="text" name="saveStandardCoal" value={caseData.saveStandardCoal} onChange={handleChange}  />
 
               <h4>Reduction of Emission:</h4>
-              <input type="text" name="reductionOfEmission" value={caseData.reductionOfEmission} onChange={handleChange} required />
+              <input type="text" name="reductionOfEmission" value={caseData.reductionOfEmission} onChange={handleChange}  />
 
-              <h4>Upload Image (optional):</h4>
+              <h4>Upload Image </h4>
               <div className="image-upload">
                 <input
                   type="file"

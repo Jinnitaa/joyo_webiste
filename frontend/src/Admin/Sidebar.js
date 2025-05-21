@@ -1,4 +1,3 @@
-// Sidebar.jsx
 import React from "react";
 import "./sidenav.css"; 
 import { TbMessageQuestion } from "react-icons/tb";
@@ -12,13 +11,12 @@ const Sidebar = ({ isSidebarOpen }) => {
   return (
     <div className={`sidebar ${!isSidebarOpen ? "closed" : ""}`}>
       <div className="side-header">
-        CMS Panel
-        <div className="header-line"></div>
       </div>
       <div className="profile">
-        <div className="profile-img"></div>
-        <h4>Admin User</h4>
-      </div>
+  <img className="profile-img" src="/images/ad1.png" alt="admin" />
+  <h4 style={{ textAlign: "center" }}>Admin User</h4>
+</div>
+        <div className="header-line"></div>
       <div className="side-menu">
         <ul>
           <li>

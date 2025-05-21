@@ -3,7 +3,7 @@
   }
   
   .faq-header {
-    background-color: green;
+    background-color: #27B964;
     padding: 60px 20px;
     text-align: center;
     color: white;
@@ -87,10 +87,11 @@
   
   .faq-answer {
     padding: 20px 5 30px;
-    font-size: 0.95rem;
-    color: #555;
+    font-size: 1rem;
+    color: #27B964;
     margin-bottom: 7px;
-    padding-bottom:5px;
+    padding-bottom:10px;
+    font-weight: 500;
   }
   
 

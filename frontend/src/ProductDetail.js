@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import './productDetail.css';
 import { VscActivateBreakpoints } from "react-icons/vsc";
 
+const baseURL = process.env.REACT_APP_API_BASE_URL;
 const ProductDetail = () => {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
@@ -13,7 +14,7 @@ const ProductDetail = () => {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/api/products/${id}`);
+        const response = await axios.get(`${baseURL}/api/products/${id}`);
         setProduct(response.data);
       } catch (err) {
         setError('Failed to fetch product details');
@@ -32,7 +33,7 @@ const ProductDetail = () => {
     <div className="product-container">
       <div className="product-top">
         <img
-          src={`http://localhost:5000/uploads/${product.image}`}
+          src={`${baseURL}/uploads/${product.image}`}
           alt={product.name}
           className="product-img"
         />
@@ -44,26 +45,34 @@ const ProductDetail = () => {
       </div>
 
       <div className="product-sections">
-        <div className="product-feature">
-          <h2>🌟 Features</h2>
-          {product.features?.map((feature, i) => (
-            <div key={i} className="feature-block">
-              <h3>{feature.header}</h3>
-              <ul>
-        {feature.points?.map((point, j) => (
-          <li key={j}>
-            <VscActivateBreakpoints style={{ marginRight: '8px', verticalAlign: 'middle', color:'green' }} />
-            {point}
-          </li>
-        ))}
-      </ul>
-            </div>
-          ))}
-        </div>
+        {/* Feature Section */}
+        {product.features?.some(f => Array.isArray(f.points) && f.points.length > 0) && (
+          <div className="product-feature">
+            <h2>Features</h2>
+            {product.features.map((feature, i) => (
+              Array.isArray(feature.points) && feature.points.length > 0 && (
+                <div key={i} className="feature-block">
+                  {feature.header && <h3>{feature.header}</h3>}
+                  <ul>
+                    {feature.points.map((point, j) => (
+                      <li key={j} style={{fontSize:'14px',color: '#333'}}>
+                        <VscActivateBreakpoints
+                          style={{ marginRight: '8px', verticalAlign: 'middle', color: 'green' }}
+                        />
+                        {point}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )
+            ))}
+          </div>
+        )}
 
-        {product.function?.length > 0 && (
+        {/* Function Section */}
+        {Array.isArray(product.function) && product.function.length > 0 && (
           <div className="product-function">
-            <h2>⚙️ Functions</h2>
+            <h2>Functions</h2>
             <table>
               <thead>
                 <tr>
@@ -75,7 +84,11 @@ const ProductDetail = () => {
                 {product.function.map((func, index) => (
                   <tr key={index}>
                     <td>{func.name}</td>
-                    <td>{Array.isArray(func.description) ? func.description.join(', ') : func.description}</td>
+                    <td>
+                      {Array.isArray(func.description)
+                        ? func.description.join(', ')
+                        : func.description}
+                    </td>
                   </tr>
                 ))}
               </tbody>

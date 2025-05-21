@@ -4,7 +4,7 @@ import './product.css';
 import Sidebar from './Sidebar';
 import { RxHamburgerMenu } from 'react-icons/rx';
 import { useNavigate } from 'react-router-dom';
-
+const baseURL = process.env.REACT_APP_API_BASE_URL;
 const FaqCreateForm = () => {
   const [faq, setFaq] = useState({
     question: '',
@@ -24,7 +24,7 @@ const FaqCreateForm = () => {
     e.preventDefault();
 
     try {
-      await axios.post('http://localhost:5000/api/faqs/createFaq', faq);
+    await axios.post(`${baseURL}/api/faqs/createFaq`, faq);
       alert('FAQ Created Successfully');
       navigate('/cms/faqList');
     } catch (error) {

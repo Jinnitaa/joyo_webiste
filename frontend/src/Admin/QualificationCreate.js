@@ -5,7 +5,7 @@ import Sidebar from './Sidebar';
 import { RxHamburgerMenu } from 'react-icons/rx';
 import { IoIosCloudUpload } from 'react-icons/io';
 import { useNavigate } from 'react-router-dom';
-
+const baseURL = process.env.REACT_APP_API_BASE_URL;
 const QualificationCreateForm = () => {
   const [image, setImage] = useState(null);
   const [isSidebarOpen, setSidebarOpen] = useState(true);
@@ -29,7 +29,7 @@ const QualificationCreateForm = () => {
     formData.append('image', image);
 
     try {
-      await axios.post('http://localhost:5000/api/qualifications/create', formData);
+      await axios.post(`${baseURL}/api/qualifications/create`, formData);
       alert('Qualification Created Successfully');
       navigate('/cms/qualificationList');
     } catch (error) {

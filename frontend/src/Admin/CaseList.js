@@ -7,18 +7,26 @@ import { Link, useNavigate } from "react-router-dom";
 import AnalyticsCard from "./AnalyticsCard";
 import Sidebar from "./Sidebar";
 import { RxHamburgerMenu } from "react-icons/rx";
-
+const baseURL = process.env.REACT_APP_API_BASE_URL;
 export const CaseList = () => {
   const [cases, setCases] = useState([]);
   const [loading, setLoading] = useState(false);
   const [isSidebarOpen, setSidebarOpen] = useState(true);
+  const [analytics, setAnalytics] = useState({
+    productCount: 0,
+    caseCount: 0,
+    qualificationCount: 0,
+    supportRequestCount: 0, // assuming you'll add this to backend later or leave 0
+  });
+
   const navigate = useNavigate();
 
+  // Fetch cases
   useEffect(() => {
     const fetchCases = async () => {
       setLoading(true);
       try {
-        const response = await axios.get("http://localhost:5000/api/cases");
+       const response = await axios.get(`${baseURL}/api/cases`);
         setCases(response.data);
       } catch (error) {
         console.error("Error fetching cases:", error);
@@ -29,12 +37,30 @@ export const CaseList = () => {
     fetchCases();
   }, []);
 
+  // Fetch analytics summary counts
+  useEffect(() => {
+    const fetchAnalytics = async () => {
+      try {
+        const response = await axios.get(`${baseURL}/api/analytics`);
+        setAnalytics({
+          productCount: response.data.productCount || 0,
+          caseCount: response.data.caseCount || 0,
+          qualificationCount: response.data.qualificationCount || 0,
+          supportRequestCount: response.data.supportRequestCount || 0,
+        });
+      } catch (error) {
+        console.error("Error fetching analytics:", error);
+      }
+    };
+    fetchAnalytics();
+  }, []);
+
   const handleEdit = (id) => navigate(`/cms/caseUpdate/${id}`);
 
   const handleCaseDelete = async (caseId) => {
     try {
       setLoading(true);
-      await axios.delete(`http://localhost:5000/api/cases/deleteCase/${caseId}`);
+      await axios.delete(`${baseURL}/api/cases/deleteCase/${caseId}`);
       setCases((prevCases) => prevCases.filter((c) => c._id !== caseId));
       alert("Case deleted successfully");
     } catch (error) {
@@ -68,10 +94,10 @@ export const CaseList = () => {
 
           <div className="page-content">
             <div className="analytics">
-              <AnalyticsCard title="Product List" value="20" width="60%" colorClass="one" />
-              <AnalyticsCard title="Case" value="150" width="80%" colorClass="two" />
-              <AnalyticsCard title="Qualification" value="20" width="75%" colorClass="three" />
-              <AnalyticsCard title="Support Requests" value="5" width="30%" colorClass="four" />
+              <AnalyticsCard title="Product List" value={analytics.productCount} width="60%" colorClass="one" />
+              <AnalyticsCard title="Case" value={analytics.caseCount} width="80%" colorClass="two" />
+              <AnalyticsCard title="Qualification" value={analytics.qualificationCount} width="75%" colorClass="three" />
+              <AnalyticsCard title="Support Requests" value={analytics.supportRequestCount} width="30%" colorClass="four" />
             </div>
           </div>
 
@@ -126,7 +152,7 @@ export const CaseList = () => {
                         <td>
                           {caseItem.image && (
                             <img
-                              src={`http://localhost:5000/uploads/${caseItem.image}`}
+                              src={`${baseURL}/uploads/${caseItem.image}`}
                               alt={caseItem.companyName}
                               width="50"
                               height="50"

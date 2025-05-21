@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap');
 .container4 {
   position: relative;
   width: 100%;
@@ -8,13 +9,15 @@
   display: flex;
   justify-content: center; 
   align-items: center; 
+  font-family: 'Libre Franklin', sans-serif;
+  
 }
 
 
 .solar-button {
   background-color: white; 
-  color: green;
-  font-size: 16px;
+  color: green ;
+  font-size: 14px;
   font-weight: bold;
   padding: 12px 24px;
   border: none;
@@ -28,6 +31,10 @@
   background-color: green; 
   transform: scale(1.05);
   color: white;
+}
+
+.text-overlay2 p {
+    font-size: 18px;
 }
 
 .solar-button:active {
@@ -99,6 +106,7 @@
     padding: 20px;
     max-width: 1100px;
     margin: auto;
+    font-family: 'Libre Franklin', sans-serif;
   }
   
   .features-text {
@@ -169,6 +177,7 @@
 .pricing-container {
   text-align: center;
   padding: 50px 20px;
+  font-family: 'Libre Franklin', sans-serif;
 }
 
 .pricing-title {
@@ -184,7 +193,7 @@
   display: block;
   width: 50px;
   height: 3px;
-  background-color: green;
+  background-color: #27B964;
   margin: 5px auto 0;
 }
 
@@ -213,7 +222,7 @@
 }
 
 .upfront-box {
-  border-color: #008000;
+  border-color: #27B964;
 }
 
 .pricing-header {
@@ -225,6 +234,7 @@
   font-size: 16px;
   color: #666;
   margin-top: 5px;
+  font-family: 'Libre Franklin', sans-serif;
 }
 
 .pricing-highlight {
@@ -234,8 +244,8 @@
 }
 
 .pricing-description {
-  font-size: 14px;
-  color: #444;
+  font-size: 16px;
+  color: #555;
   margin-bottom: 10px;
 }
 
@@ -249,8 +259,8 @@
   align-items: center;
   gap: 10px;
   margin-bottom: 10px;
-  font-size: 14px;
-  color: #333;
+  font-size: 16px;
+  color: #555;
 }
 
 .check-icon {
@@ -271,7 +281,7 @@
 }
 
 .mspa-button {
-  background-color: #008000;
+  background-color: #27B964;
   color: white;
 }
 

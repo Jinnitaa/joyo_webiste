@@ -3,9 +3,9 @@ import axios from 'axios';
 import './case.css';
 import Sidebar from './Sidebar';
 import { RxHamburgerMenu } from 'react-icons/rx';
-import { IoIosCloudUpload } from "react-icons/io";
 import { useNavigate, useParams } from 'react-router-dom';
 
+const baseURL = process.env.REACT_APP_API_BASE_URL;
 const FaqUpdateForm = () => {
   const [faqData, setFaqData] = useState({
     question: '',
@@ -22,7 +22,7 @@ const FaqUpdateForm = () => {
   useEffect(() => {
     const fetchFaq = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/api/faqs/${id}`);
+        const response = await axios.get(`${baseURL}/api/faqs/${id}`);
         setFaqData(response.data);
       } catch (error) {
         console.error('Error fetching FAQ:', error);

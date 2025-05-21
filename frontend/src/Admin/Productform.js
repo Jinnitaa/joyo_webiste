@@ -8,7 +8,7 @@ import { RiAddCircleLine } from "react-icons/ri";
 import { IoIosCloudUpload } from "react-icons/io";
 import { useNavigate } from 'react-router-dom';
 import { TiMinus } from "react-icons/ti";
-
+const baseURL = process.env.REACT_APP_API_BASE_URL;
 const ProductCreateForm = () => {
   const [product, setProduct] = useState({
     name: '',
@@ -16,13 +16,12 @@ const ProductCreateForm = () => {
     detail: '',
     category: '',
     image: null,
-    features: [{ header: '', points: [''] }],
+    features: [],
     function: [{ name: '', description: '' }]
   });
 
   const [isSidebarOpen, setSidebarOpen] = useState(true);
   const navigate = useNavigate();
-
   const toggleSidebar = () => setSidebarOpen(!isSidebarOpen);
 
   const handleChange = (e) => {
@@ -34,9 +33,9 @@ const ProductCreateForm = () => {
   };
 
   const handleFeatureChange = (index, key, value) => {
-    const updatedFeatures = [...product.features];
-    updatedFeatures[index][key] = value;
-    setProduct({ ...product, features: updatedFeatures });
+    const updated = [...product.features];
+    updated[index][key] = value;
+    setProduct({ ...product, features: updated });
   };
 
   const addFeature = () => {
@@ -47,32 +46,32 @@ const ProductCreateForm = () => {
   };
 
   const removeFeature = (index) => {
-    const updatedFeatures = product.features.filter((_, i) => i !== index);
-    setProduct({ ...product, features: updatedFeatures });
+    const updated = product.features.filter((_, i) => i !== index);
+    setProduct({ ...product, features: updated });
   };
 
   const addPoint = (featureIndex) => {
-    const updatedFeatures = [...product.features];
-    updatedFeatures[featureIndex].points.push('');
-    setProduct({ ...product, features: updatedFeatures });
+    const updated = [...product.features];
+    updated[featureIndex].points.push('');
+    setProduct({ ...product, features: updated });
   };
 
   const removePoint = (featureIndex, pointIndex) => {
-    const updatedFeatures = [...product.features];
-    updatedFeatures[featureIndex].points.splice(pointIndex, 1);
-    setProduct({ ...product, features: updatedFeatures });
+    const updated = [...product.features];
+    updated[featureIndex].points.splice(pointIndex, 1);
+    setProduct({ ...product, features: updated });
   };
 
   const handlePointChange = (featureIndex, pointIndex, value) => {
-    const updatedFeatures = [...product.features];
-    updatedFeatures[featureIndex].points[pointIndex] = value;
-    setProduct({ ...product, features: updatedFeatures });
+    const updated = [...product.features];
+    updated[featureIndex].points[pointIndex] = value;
+    setProduct({ ...product, features: updated });
   };
 
   const handleFunctionChange = (index, key, value) => {
-    const updatedFunctions = [...product.function];
-    updatedFunctions[index][key] = value;
-    setProduct({ ...product, function: updatedFunctions });
+    const updated = [...product.function];
+    updated[index][key] = value;
+    setProduct({ ...product, function: updated });
   };
 
   const addFunction = () => {
@@ -83,8 +82,8 @@ const ProductCreateForm = () => {
   };
 
   const removeFunction = (index) => {
-    const updatedFunctions = product.function.filter((_, i) => i !== index);
-    setProduct({ ...product, function: updatedFunctions });
+    const updated = product.function.filter((_, i) => i !== index);
+    setProduct({ ...product, function: updated });
   };
 
   const handleSubmit = async (e) => {
@@ -96,14 +95,22 @@ const ProductCreateForm = () => {
     formData.append('detail', product.detail);
     formData.append('category', product.category);
     if (product.image) formData.append('image', product.image);
-    formData.append('features', JSON.stringify(product.features));
+
+    // Only send features if non-empty
+    const filteredFeatures = product.features.filter(
+      f => f.header.trim() !== '' || f.points.some(p => p.trim() !== '')
+    );
+    if (filteredFeatures.length > 0) {
+      formData.append('features', JSON.stringify(filteredFeatures));
+    }
+
     const filteredFunctions = product.function.filter(
-      (func) => func.name.trim() !== '' || func.description.trim() !== ''
+      f => f.name.trim() !== '' || f.description.trim() !== ''
     );
     formData.append('functions', JSON.stringify(filteredFunctions));
 
     try {
-      await axios.post('http://localhost:5000/api/products/createProduct', formData, {
+    await axios.post(`${baseURL}/api/products/createProduct`,formData, {
         headers: { 'Content-Type': 'multipart/form-data' }
       });
 
@@ -142,7 +149,7 @@ const ProductCreateForm = () => {
               <textarea name="description" value={product.description} onChange={handleChange} />
 
               <h4>Product Detail:</h4>
-              <textarea name="detail" value={product.detail} onChange={handleChange}  />
+              <textarea name="detail" value={product.detail} onChange={handleChange} />
 
               <h4>Category:</h4>
               <select
@@ -180,7 +187,7 @@ const ProductCreateForm = () => {
 
             <div className="form-right">
               <div className="features-header">
-                <h4>Features:</h4>
+                <h4>Features (Optional):</h4>
                 <RiAddCircleLine
                   className="add-feature-icon"
                   onClick={addFeature}
@@ -188,24 +195,25 @@ const ProductCreateForm = () => {
                 />
               </div>
 
+              {product.features.length === 0 && (
+                <p style={{ fontStyle: 'italic', color: '#666' }}>No features added yet.</p>
+              )}
+
               {product.features.map((feature, featureIndex) => (
                 <div key={featureIndex} className="feature-container">
                   <div className="feature-header-with-icon">
                     <h5>Feature Header:</h5>
-                    {product.features.length > 1 && (
-                      <TiMinus
-                        className="delete-icon"
-                        onClick={() => removeFeature(featureIndex)}
-                        title="Remove Feature"
-                      />
-                    )}
+                    <TiMinus
+                      className="delete-icon"
+                      onClick={() => removeFeature(featureIndex)}
+                      title="Remove Feature"
+                    />
                   </div>
 
                   <input
                     type="text"
                     value={feature.header}
                     onChange={(e) => handleFeatureChange(featureIndex, 'header', e.target.value)}
-                    required
                   />
 
                   <div className="points-header">
@@ -223,7 +231,6 @@ const ProductCreateForm = () => {
                         type="text"
                         value={point}
                         onChange={(e) => handlePointChange(featureIndex, pointIndex, e.target.value)}
-                        required
                       />
                       {feature.points.length > 1 && (
                         <TiMinus

@@ -62,36 +62,34 @@ const ProfileCards = () => {
           ))}
         </div>
       </div>
-      <section className="image-section">
-      <div className="section-header">
-        Performance
-      </div>
+ <section className="image-section">
+  <div className="section-header">Performance</div>
 
-      <div className="image1-container">
-        <div className="image1-card">
-          <div className="overlay">
-            <span className="large-text" data-aos="fade-up">20</span>
-            <span className="small-text" data-aos="fade-up" data-aos-offset="100">Cover Countries/Regions</span>
-          </div>
-          <img src="/images/l1.jpg" alt="Image 1" />
-        </div>
-        <div className="image1-card">
-          <div className="overlay">
-            <span className="large-text" data-aos="fade-up">240</span>
-            <span className="small-text" data-aos="fade-up" data-aos-offset="100">Solar Power Plants</span>
-          </div>
-          <img src="/images/l2.jpg" alt="Image 2" />
-        </div>
-        <div className="image1-card">
-          <div className="overlay">
-            <span className="large-text" >400MWp</span>
-            <span className="small-text" data-aos="fade-up "data-aos-offset="100">Capacities</span>
-          </div>
-          <img src="/images/l3.jpg" alt="Image 3" />
-        </div>
+  <div className="image1-container">
+    <div className="image1-card">
+      <img src="/images/l1.jpg" alt="Image 1" />
+      <div className="overlay">
+        <span >20</span>
+        <span className="small-text">Cover Countries/Regions</span>
       </div>
+    </div>
+    <div className="image1-card">
+      <img src="/images/l2.jpg" alt="Image 2" />
+      <div className="overlay">
+        <span className="large-text" data-aos="fade-up">240</span>
+        <span className="small-text" data-aos="fade-up" data-aos-offset="100">Solar Power Plants</span>
+      </div>
+    </div>
+    <div className="image1-card">
+      <img src="/images/l3.jpg" alt="Image 3" />
+      <div className="overlay">
+        <span className="large-text">400MWp</span>
+        <span className="small-text" data-aos="fade-up" data-aos-offset="100">Capacities</span>
+      </div>
+    </div>
+  </div>
+</section>
 
-    </section>
 
 
     

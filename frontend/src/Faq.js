@@ -3,6 +3,7 @@ import './faq.css';
 import { CgMathPlus } from "react-icons/cg";
 import axios from 'axios';
 
+const baseURL = process.env.REACT_APP_API_BASE_URL;
 const CustomerFaq = () => {
   const [activeIndex, setActiveIndex] = useState(null);
   const [faqs, setFaqs] = useState([]);
@@ -15,7 +16,7 @@ const CustomerFaq = () => {
   useEffect(() => {
     const fetchFaqs = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/faqs');
+        const response = await axios.get(`${baseURL}/api/faqs`);
         setFaqs(response.data);
       } catch (error) {
         console.error('Error fetching FAQs:', error);

@@ -62,8 +62,9 @@
   width: 60px;
   height: 60px;
   border-radius: 50%;
-  background: #ddd;
+  background: white;
   margin: 0 auto 1rem;
+  display: block; /* ensures centering with margin auto */
 }
 
 .profile h4 {

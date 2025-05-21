@@ -32,6 +32,9 @@ import Battery from "./Battery";
 import PV from "./PV";
 import ContactUs from "./Contact";
 import ContactList from "./Admin/ContactList";
+import AdminSignup from "./Admin/Signup";
+import AdminLoginn from "./Admin/Login";
+import ProtectedRoute from './Admin/ProtectedRoute';
 
 
 
@@ -81,21 +84,29 @@ function App() {
           <Route path="/case" element={<Case />} />
           <Route path="/faq" element={<CustomerFaq />} />
           <Route path="/contact-us" element={<ContactUs />} />
-          <Route path="/cms" element={<Dashboard />} />  {/* CMS without Navbar/Footer */}
-          <Route path="/cms/productCreate" element={<ProductForm />} />  {/* CMS without Navbar/Footer */}
-          <Route path="/cms/productList" element={<ProductList />} />
-          <Route path="/sidebar" element={<Sidebar />} />
-          <Route path="/cms/productUpdate/:id" element={<ProductUpdateForm />} />
           <Route path="/product/:id"  element={<ProductDetail />} />
-          <Route path="/cms/caseCreate" element={<CaseCreateForm />} />  {/* CMS without Navbar/Footer */}
-          <Route path="/cms/caseList" element={<CaseList />} /> 
-          <Route path="/cms/caseUpdate/:id" element={<CaseUpdateForm />} /> 
-          <Route path="/cms/faqCreate" element={<FaqCreateForm />} /> 
-          <Route path="/cms/faqList" element={<FaqList />} /> 
-          <Route path="/cms/faqUpdate/:id" element={<FaqUpdateForm />} /> 
-          <Route path="/cms/qualificationCreate" element={<QualificationCreateForm />} />
-          <Route path="/cms/qualificationList" element={<QualificationList />} />
-          <Route path="/cms/contactList" element={<ContactList />} />
+
+
+
+
+          <Route path="/cms" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />  {/* CMS without Navbar/Footer */}
+          <Route path="/cms/productCreate" element={<ProtectedRoute><ProductForm /></ProtectedRoute>} />  {/* CMS without Navbar/Footer */}
+          <Route path="/cms/productList" element={<ProtectedRoute><ProductList /></ProtectedRoute>} />
+          <Route path="/cms/productUpdate/:id" element={<ProtectedRoute><ProductUpdateForm /></ProtectedRoute>} />
+          <Route path="/cms/caseCreate" element={<ProtectedRoute><CaseCreateForm /></ProtectedRoute>} />  {/* CMS without Navbar/Footer */}
+          <Route path="/cms/caseList" element={<ProtectedRoute><CaseList /></ProtectedRoute>} /> 
+          <Route path="/cms/caseUpdate/:id" element={<ProtectedRoute><CaseUpdateForm /></ProtectedRoute>} /> 
+          <Route path="/cms/faqCreate" element={<ProtectedRoute><FaqCreateForm /></ProtectedRoute>} /> 
+          <Route path="/cms/faqList" element={<ProtectedRoute><FaqList /></ProtectedRoute>} /> 
+          <Route path="/cms/faqUpdate/:id" element={<ProtectedRoute><FaqUpdateForm /></ProtectedRoute>} /> 
+          <Route path="/cms/qualificationCreate" element={<ProtectedRoute><QualificationCreateForm /></ProtectedRoute>} />
+          <Route path="/cms/qualificationList" element={<ProtectedRoute><QualificationList /></ProtectedRoute>} />
+          <Route path="/cms/contactList" element={<ProtectedRoute><ContactList /></ProtectedRoute>} />
+          
+          
+          
+          <Route path="/adminSignup" element={<AdminSignup />} />
+          <Route path="/adminLogin" element={<AdminLoginn />} />
         </Routes>
       </Layout>
     </Router>

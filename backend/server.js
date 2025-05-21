@@ -1,18 +1,22 @@
 // server.js
 import express from 'express';
-import mongoose from 'mongoose';
 import cors from 'cors';
 import dotenv from 'dotenv';
+dotenv.config();
+import bodyParser from 'body-parser';
+import jwt from 'jsonwebtoken';
+import mongoose from 'mongoose';
 import multer from 'multer';
 import Product from './model/Product.js';
 import Case from './model/Case.js';
 import FAQ from './model/FAQ.js';
 import Contact from './model/Contact.js';
+import Admin from './model/Admin.js';
 import Qualification from './model/Qualification.js';
 import path from 'path';
 
 
-dotenv.config();
+
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -21,15 +25,21 @@ const PORT = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 app.use('/uploads', express.static(path.join('uploads'))); // Serve static files
 
-// MongoDB Connection
-mongoose.connect(process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/JOYO', {
+const mongoURI = process.env.MONGO_URI;
+
+mongoose.connect(mongoURI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 })
-.then(() => console.log('✅ Connected to MongoDB'))
-.catch((error) => console.error('❌ MongoDB connection error:', error));
+.then(() => {
+  console.log('✅ Connected to MongoDB successfully');
+})
+.catch(err => {
+  console.error('❌ MongoDB connection error:', err);
+});
 
 // Multer Setup for File Upload
 const storage = multer.diskStorage({
@@ -41,6 +51,9 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 // ---------------- Routes ---------------- //
+app.get('/', (req, res) => {
+  res.send('Hello World');
+});
 
 // CREATE Product
 app.post('/api/products/createProduct', upload.single('image'), async (req, res) => {
@@ -48,13 +61,17 @@ app.post('/api/products/createProduct', upload.single('image'), async (req, res)
     const { name, description, category, detail, features, functions } = req.body;
     const image = req.file ? req.file.filename : null;
 
-    if (!name || !description || !category || !features || !functions) {
+    if (!name || !description || !category || !functions) {
       return res.status(400).json({ message: 'Missing required fields' });
     }
 
-    let parsedFeatures, parsedFunctions;
+    let parsedFeatures = [];
+    let parsedFunctions;
+
     try {
-      parsedFeatures = JSON.parse(features);
+      if (features) {
+        parsedFeatures = JSON.parse(features);
+      }
       parsedFunctions = JSON.parse(functions);
     } catch (error) {
       return res.status(400).json({ message: 'Error parsing features or functions' });
@@ -77,7 +94,6 @@ app.post('/api/products/createProduct', upload.single('image'), async (req, res)
     res.status(500).json({ message: 'Error creating product', error: error.message });
   }
 });
-
 // GET All Products
 app.get('/api/products', async (req, res) => {
   try {
@@ -320,7 +336,7 @@ app.get('/api/faqs/:id', async (req, res) => {
     const faq = await FAQ.findById(req.params.id);
     if (!faq) return res.status(404).json({ message: 'FAQ not found' });
     res.json(faq);
-  } catch (error) {
+  } catch (error) {  
     res.status(500).json({ message: 'Error fetching FAQ', error: error.message });
   }
 });
@@ -451,13 +467,13 @@ app.delete('/api/qualifications/:id', async (req, res) => {
 // ---------------- Contact ---------------- //
 app.post('/api/contacts/createContact', async (req, res) => {
   try {
-    const { fullName, email, message } = req.body;
+    const { fullName, email,phone, message } = req.body;
 
-    if (!fullName || !email || !message) {
+    if (!fullName || !email || !phone || !message) {
       return res.status(400).json({ message: 'Missing required fields' });
     }
 
-    const newContact = new Contact({ fullName, email, message });
+    const newContact = new Contact({ fullName, email, message, phone });
     await newContact.save();
 
     res.status(201).json({ message: 'Contact created successfully', contact: newContact });
@@ -506,6 +522,79 @@ app.delete('/api/contacts/deleteContact/:id', async (req, res) => {
     res.status(500).json({ message: 'Error deleting contact', error: error.message });
   }
 });
+
+// ---------------- Admin Signup and Login  ---------------- //
+
+app.post('/admin/signup', async (req, res) => {
+  const { username, password, signupKey } = req.body;
+
+  if (signupKey !== process.env.ADMIN_CREATION_SECRET) {
+    return res.status(403).json({ message: 'Invalid signup key' });
+  }
+
+  try {
+    const existingAdmin = await Admin.findOne({ username });
+    if (existingAdmin) {
+      return res.status(400).json({ message: 'Username already exists' });
+    }
+
+    const newAdmin = new Admin({ username, password });
+    await newAdmin.save();
+
+    res.status(201).json({ message: 'Admin account created successfully' });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+app.post('/admin/login', async (req, res) => {
+  const { username, password } = req.body;
+
+  try {
+    const admin = await Admin.findOne({ username });
+    if (!admin) {
+      return res.status(401).json({ message: 'Invalid username or password' });
+    }
+
+    const isMatch = await admin.comparePassword(password);
+    if (!isMatch) {
+      return res.status(401).json({ message: 'Invalid username or password' });
+    }
+
+    const token = jwt.sign(
+      { adminId: admin._id, username: admin.username },
+      process.env.JWT_SECRET,
+      { expiresIn: '1h' }
+    );
+
+    res.json({ token });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+
+app.get('/api/analytics', async (req, res) => {
+  try {
+    const productCount = await Product.countDocuments();
+    const caseCount = await Case.countDocuments();
+    const faqCount = await FAQ.countDocuments();
+    const qualificationCount = await Qualification.countDocuments();
+    const supportRequestCount = await Contact.countDocuments();
+
+    res.json({
+      productCount,
+      caseCount,
+      faqCount,
+      qualificationCount,
+      supportRequestCount,
+    });
+  } catch (error) {
+    console.error('Analytics error:', error);
+    res.status(500).json({ message: 'Error fetching analytics', error: error.message });
+  }
+});
+
 
 
 // ---------------- Start Server ---------------- //
