@@ -1,6 +1,6 @@
 // AnalyticsCard.jsx
 import React from "react";
-import "./cms.css"; // Use existing styles
+import "./cms.css"; 
 
 const AnalyticsCard = ({ title, value, width, colorClass }) => {
   return (

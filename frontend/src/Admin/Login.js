@@ -19,7 +19,7 @@ function AdminLogin() {
       });
 
       localStorage.setItem('adminToken', response.data.token);
-      navigate('/cms');
+      navigate('/cms/productList');
     } catch (error) {
       alert('Login failed: ' + (error.response?.data?.message || error.message));
     }

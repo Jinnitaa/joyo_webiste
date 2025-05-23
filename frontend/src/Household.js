@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import "./household.css";
-
+import { Link } from 'react-router-dom';
 const Industrial = () => {
   useEffect(() => {
     AOS.init({ duration: 1000, once: true }); // Initialize AOS
@@ -16,19 +16,22 @@ const Industrial = () => {
           backgroundImage: "url('/images/bg5.png')",
         }}
       >
-        {/* Overlay Text */}
+
         <div className="text-overlay2" data-aos="fade-up">
           <h2>Household PV Energy Storage Solution</h2>
           <p>
             Save The Earth While Unlocking Greater Cost Savings. Install solar panels, inverter, and batteries at your home. Save costs and sell back surplus electricity to the grid.
           </p>
-          {/* Button */}
+          <br></br>
+         
+          <Link to="/contact-us">
           <button className="solar-button">Get a Free Quote</button>
+        </Link>
         </div>
       </div>
       <div className="grey-line"></div>
-      <div className="features-container" data-aos="fade-up">
-        <div className="text-section">
+      <div className="main-container-2">
+        <div className="text-section" data-aos="fade-right">
           <div className="green-line"></div>
           <h1>Why should we use solar power?</h1>
           <p>
@@ -36,7 +39,7 @@ const Industrial = () => {
           </p>
         </div>
 
-        <div className="features-image">
+        <div className="features-image" data-aos="fade-left">
           <img src="/images/h1.png" alt="Solar House" />
         </div>
       </div>
@@ -45,21 +48,21 @@ const Industrial = () => {
         <img src="/images/bg6.png" alt="Diagram" className="diagram-image" />
 
 
-        <div className="diagram-text diagram-text1">
+        <div className="diagram-text diagram-text1" data-aos="flip-up">
           <div className="icon" style={{ color: "green" }}>➕</div>
           <p>
             During the day, basked in sunlight, the energy storage system converts solar energy into "green" electricity for home use.
           </p>
         </div>
 
-        <div className="diagram-text diagram-text2">
+        <div className="diagram-text diagram-text2" data-aos="flip-up">
           <div className="icon">➕</div>
           <p>
             When a blackout happens, the energy storage system seamlessly transitions into becoming the home's primary energy source, ensuring uninterrupted operation of critical appliances.
           </p>
         </div>
 
-        <div className="diagram-text diagram-text3">
+        <div className="diagram-text diagram-text3" data-aos="flip-up">
           <div className="icon">➕</div>
           <p>
             As night falls, the energy storage system harnesses electricity stored in the battery during the day to consistently provide a continuous supply of green energy.
@@ -67,7 +70,7 @@ const Industrial = () => {
         </div>
       </div>
 
-      {/* Image Slider Section */}
+
     
     <div className="Section_body">
       <div className="c">

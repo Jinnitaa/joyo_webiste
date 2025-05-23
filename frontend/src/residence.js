@@ -2,10 +2,11 @@ import React, { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import "./solution.css";
+import { Link } from 'react-router-dom';
 
 const Residence = () => {
     useEffect(() => {
-        AOS.init({ duration: 1000, once: true }); // Initialize AOS
+        AOS.init({ duration: 1000, once: true }); 
       }, []); 
 
       const phases = [
@@ -38,14 +39,14 @@ const Residence = () => {
 
           {/* Second Part */}
           <div className="main-container-2">
-      <div className="text-section">
+      <div className="text-section" data-aos="fade-right">
       <div className="green-line"></div>
         <h1>Why should we use solar power?</h1>
         <p>
         Solar energy is an inexhaustible source of power that generates electricity without producing carbon dioxide or other pollutants, making it a truly clean energy. Solar power generation technology is increasingly becoming the optimal solution for people to address energy crises and achieve sustainable development.
         </p>
       </div>
-      <div className="image-section">
+      <div className="image-section" data-aos="fade-left">
         <img src="/images/s2.png" alt="Your description" />
       </div>
     </div>
@@ -115,7 +116,9 @@ const Residence = () => {
           <span>Please note that the actual situation may vary in different regions.</span>
         </div>
       </div>
+      <Link to="/contact-us">
       <button className="contact-button">Contact Us</button>
+      </Link>
     </div>
 
   

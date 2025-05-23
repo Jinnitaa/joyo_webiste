@@ -1,3 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Libre+Franklin:ital,wght@0,100..900;1,100..900&display=swap');
+
+body{
+   font-family: 'Libre Franklin', sans-serif;
+}
+
 .inverter-text {
   background-color: rgba(0, 0, 0, 0.6); /* translucent dark background */
   color: white;
@@ -49,7 +55,7 @@
   }
 
   .inverter-text p {
-    font-size: 15px;
+    font-size: 12px;
   }
 }
 
@@ -62,7 +68,7 @@
 }
 
 .products-title {
-  font-size: 32px;
+  font-size: 28px;
   font-weight: 600;
   margin-bottom: 20px;
 }
@@ -99,7 +105,7 @@
   margin: 0 auto; /* Center the image */
 }
 .product-name {
-  font-size: 20px;
+  font-size: 18px;
   margin-top: 15px;
   font-weight: 600;
 }
@@ -119,6 +125,8 @@
     max-width: 100%;
   }
 
+
+
   .inverter-text h2 {
     font-size: 22px;
   }
@@ -127,13 +135,21 @@
     font-size: 14px;
   }
 
-  /* For phones, show 1 product per row */
+  .product-name {
+  font-size: 16px;
+  
+}
+
+.product-desc {
+  font-size: 14px;
+}
+
+
   .products-grid {
-    grid-template-columns: 1fr; /* 1 column per row */
+    grid-template-columns: 1fr; 
   }
 }
 
-/* 💻 Tablets (768px to 1024px) */
 @media (min-width: 768px) and (max-width: 1024px) {
   .inverter-text {
     margin-left: 0;
@@ -149,11 +165,27 @@
     font-size: 15px;
   }
 
-  /* For tablets, show 2 products per row */
+
   .products-grid {
-    grid-template-columns: repeat(2, 1fr); /* 2 columns per row */
+    grid-template-columns: repeat(2, 1fr); 
   }
+
+  .products-title {
+  font-size: 22px;
+  
 }
+
+.product-name {
+  font-size: 16px;
+  
+}
+
+.product-desc {
+  font-size: 14px;
+}
+}
+
+
 
 /* For larger screens (desktop), show 3 products per row (default) */
 @media (min-width: 1025px) {

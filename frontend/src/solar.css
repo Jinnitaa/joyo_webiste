@@ -15,7 +15,14 @@
   height: auto;
   display: block;
 }
-/* Mobile Devices (≤ 600px) */
+
+
+.c > input[type="radio"] {
+  display: none; 
+}
+
+
+
 @media screen and (max-width: 600px) {
   .text-overlay2 h2 {
     font-size: 22px;

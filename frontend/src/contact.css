@@ -1,3 +1,7 @@
+body{
+    font-family: 'Libre Franklin', sans-serif;
+}
+
 .contact-container {
   position: relative;
   background-size: cover;
@@ -6,6 +10,7 @@
   padding: 50px;
   color: #fff;
   overflow: hidden;
+  margin-top:50px;
 }
 
 .contact-content {
@@ -19,14 +24,14 @@
 }
 
 .header h1 {
-  font-size: 48px;
+  font-size: 36px;
   margin-bottom: 20px;
 }
 
 .header p {
   max-width: 600px;
   margin: 0 auto;
-  font-size: 18px;
+  font-size: 16px;
 }
 
 .contact-info {
@@ -43,6 +48,7 @@
   padding: 30px;
   border-radius: 10px;
   flex: 1 1 45%;
+  font-size:16px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
@@ -85,5 +91,9 @@
 @media (max-width: 768px) {
   .info, .form {
     flex: 1 1 100%;
+    font-size:14px;
   }
+  .header h1 {
+  font-size: 32px;
+}
 }

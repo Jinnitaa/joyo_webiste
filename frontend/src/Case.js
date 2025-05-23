@@ -33,8 +33,8 @@ const Case = () => {
           </p>
         </div>
       </div>
-
-      {/* Project Cards Section */}
+      <div className="grey-line"></div>
+   
       <div className="case-cards-section">
         <h3 className="solar-title" data-aos="fade-up">Solar Installation</h3>
         <div className="case-cards-wrapper">

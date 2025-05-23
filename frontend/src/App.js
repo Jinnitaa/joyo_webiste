@@ -86,9 +86,6 @@ function App() {
           <Route path="/contact-us" element={<ContactUs />} />
           <Route path="/product/:id"  element={<ProductDetail />} />
 
-
-
-
           <Route path="/cms" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />  {/* CMS without Navbar/Footer */}
           <Route path="/cms/productCreate" element={<ProtectedRoute><ProductForm /></ProtectedRoute>} />  {/* CMS without Navbar/Footer */}
           <Route path="/cms/productList" element={<ProtectedRoute><ProductList /></ProtectedRoute>} />

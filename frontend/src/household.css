@@ -1,9 +1,9 @@
 .green-line {
-    width: 100px; /* Adjust the length of the line */
-    height: 4px; /* Adjust thickness */
-    background-color: green; /* Green color */
+    width: 100px; 
+    height: 4px; 
+    background-color: green;
     
-    border-radius: 2px; /* Smooth edges */
+    border-radius: 2px; 
   }
 
   .diagram-container {
@@ -20,7 +20,7 @@
   
   .diagram-text {
     position: absolute;
-    width: 250px; /* Adjust width for better layout */
+    width: 250px;
     padding: 10px;
     background: rgba(255, 255, 255, 0.8);
     border-radius: 10px;
@@ -35,7 +35,7 @@
     margin-bottom: 5px;
   }
   
-  /* Positioning each text box */
+  
   .diagram-text1 {
     top: 10%;
     left: 15%;
@@ -83,6 +83,12 @@
   margin: 0;
   background: hsl(0, 0%, 0%);
   overflow: hidden; 
+  
+}
+.Section_body li {
+  list-style: none;
+  margin-left: 0;
+  padding-left: 0;
 }
 
 .c {
@@ -178,6 +184,7 @@ input:checked+label+.ci~.ci {
 input:not(:checked)+label+.ci {
   transition: 0;
 }
+
 
 
 @media (max-width: 991px) {

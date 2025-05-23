@@ -1,6 +1,17 @@
-@import url('https://fonts.googleapis.com/css2?family=Libre+Franklin:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;600&display=swap');
+
 .navbar {
-  background-color: #111111;
+  background-color: #111;
+  padding: 20px 30px;
+}
+
+.navbar {
+  position: fixed;        
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;           
+  background-color: #111;
   padding: 20px 30px;
 }
 
@@ -26,69 +37,68 @@
 }
 
 .nav-links {
-  list-style: none; 
-  padding: 0;
+  list-style: none;
   display: flex;
   gap: 20px;
-}
-
-.nav-links li {
-  padding: 0; 
+  padding: 0;
 }
 
 .nav-links li a {
-  color: white;
+  color: rgba(255, 255, 255, 0.7);
   text-decoration: none;
   font-family: 'Libre Franklin', sans-serif;
-  font-size: 16px;
+  font-size: 14px;
   padding: 20px;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Apply hover effect for all links */
 .nav-links li a:hover {
-  background-color: green; 
-  color: white; 
+  background-color: green;
+  color: white;
+}
+
+.nav-links li a.active,
+.nav-links li.active > a {
+  color: green;
+  border-bottom: 2px solid green;
+  background-color: #111;
 }
 
 .dropdown {
   position: relative;
-  z-index: 1; 
 }
 
 .dropdown-menu {
-  display: none; 
+  display: none;
   position: absolute;
-  background-color: white; 
-  padding: 10px;
+  background-color: white;
   top: 100%;
   left: 0;
+  padding: 10px;
   min-width: 280px;
   border-radius: 5px;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); 
-  z-index: 2;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   list-style: none;
+  z-index: 2;
 }
 
 .dropdown-menu li a {
-  color: black; 
-  text-decoration: none;
-  padding: 8px;
   display: block;
-  border-radius: 5px; 
-  transition: background-color 0.3s ease; 
-  font-size:14px;
-  
+  padding: 8px;
+  font-size: 14px;
+  color: black;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
 }
 
-/* Hover effect for links inside dropdown */
 .dropdown-menu li a:hover {
   background-color: green;
-  color: white; 
+  color: white;
 }
 
 .dropdown:hover .dropdown-menu {
-  display: block; 
+  display: block;
 }
 
 @media (max-width: 768px) {
@@ -96,29 +106,64 @@
     display: block;
   }
 
+  .dropdown-menu {
+    display: none;
+  }
+
+  .dropdown:hover .dropdown-menu {
+    display: block;
+  }
+
+  .nav-container {
+    justify-content: space-between;
+    margin: 0 20px;
+  }
+
   .nav-links {
     display: none;
     flex-direction: column;
-    background: #333;
+    background: #222;
     position: absolute;
-    top: 50px;
+    top: 70px;
     left: 0;
     width: 100%;
-    padding: 10px;
-    z-index: 1; 
+    padding: 10px 20px;
+    z-index: 10;
+    border-radius: 0 0 8px 8px;
   }
 
   .nav-links.open {
     display: flex;
   }
 
-  
-  .dropdown-menu {
-    left: 0; 
-    position: static;
+  .nav-links li {
+    text-align: center;
   }
 
-  .dropdown:hover .dropdown-menu {
-    display: block; 
+  .nav-links li a {
+    padding: 12px 0;
+    display: block;
+    font-size: 14px;
+    color: white;
   }
+
+  .dropdown-menu {
+    position: static;
+    display: none;
+    background-color: #333;
+    margin-top: 5px;
+    padding: 0;
+    border-radius: 5px;
+    flex-direction: column;
+  }
+
+  .dropdown.open-dropdown .dropdown-menu {
+    display: flex;
+  }
+
+  .dropdown-menu li a {
+    padding: 10px 20px;
+    color: white;
+  }
+
 }

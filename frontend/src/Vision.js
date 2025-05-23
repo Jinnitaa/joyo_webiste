@@ -5,12 +5,12 @@ import "aos/dist/aos.css";
 
 const Vision = () => {
   useEffect(() => {
-    AOS.init({ duration: 1000, once: true }); // Initialize AOS
+    AOS.init({ duration: 1000, once: true }); 
   }, []);
 
   return (
     <div>
-      {/* Company Vision */}
+ 
       <div
         className="container5"
         style={{

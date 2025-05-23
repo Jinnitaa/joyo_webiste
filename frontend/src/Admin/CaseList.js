@@ -16,7 +16,7 @@ export const CaseList = () => {
     productCount: 0,
     caseCount: 0,
     qualificationCount: 0,
-    supportRequestCount: 0, // assuming you'll add this to backend later or leave 0
+    supportRequestCount: 0, 
   });
 
   const navigate = useNavigate();

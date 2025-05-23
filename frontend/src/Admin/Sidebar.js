@@ -50,7 +50,7 @@ const Sidebar = ({ isSidebarOpen }) => {
             </a>
           </li>
           <li>
-            <a href="#">
+            <a href="/adminLogin">
               <PiSignOutBold className="sidebar-icon" />
               <span> Signout</span>
             </a>

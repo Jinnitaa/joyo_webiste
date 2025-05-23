@@ -1,11 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './inverter.css';
+import AOS from "aos";
+import "aos/dist/aos.css";
 import { Link } from 'react-router-dom'; 
-
+const baseUrl = process.env.REACT_APP_API_BASE_URL;
 const Inverter = () => {
+    useEffect(() => {
+          AOS.init({ duration: 1000, once: true });
+        }, []); 
   const sectionStyle = {
-    backgroundImage: 'url("/images/bg14.png")', // image must be in public/images folder
+    backgroundImage: 'url("/images/bg14.png")', 
     backgroundSize: 'cover',
     backgroundPosition: 'center',
     backgroundRepeat: 'no-repeat',
@@ -17,13 +22,13 @@ const Inverter = () => {
   };
 
   const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(true); // optional loader state
-  const [error, setError] = useState(null); // optional error state
+  const [loading, setLoading] = useState(true); 
+  const [error, setError] = useState(null); 
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/products'); // adjust your endpoint
+         const response = await axios.get(`${baseUrl}/api/products`); 
         const inverterProducts = response.data.filter(product => product.category === 'Energy Storage');
         setProducts(inverterProducts);
       } catch (err) {
@@ -43,8 +48,8 @@ const Inverter = () => {
 
   return (
     <>
-      <div className="inverter-section" style={sectionStyle}>
-        <div className="inverter-text">
+      <div className="inverter-section" style={sectionStyle} >
+        <div className="inverter-text" data-aos="flip-right">
           <h2>Energy Storage Inverter</h2>
           <p>
             A0FEI Energy Storage Inverter seamlessly integrates with various setups, 
@@ -57,8 +62,10 @@ const Inverter = () => {
         </div>
       </div>
 
+          <div className="grey-line"></div>
+
       {/* Products Section */}
-      <div className="products-section">
+      <div className="products-section" >
         <h2 className="products-title">Products</h2>
         <div className="products-line" />
         <div className="products-grid">
@@ -66,11 +73,12 @@ const Inverter = () => {
     <Link 
       to={`/product/${product._id}`} 
       className="product-card" 
+      data-aos="flip-up"
       key={product._id} 
-      style={{ textDecoration: 'none', color: 'inherit' }} // Optional styling to keep it clean
+      style={{ textDecoration: 'none', color: 'inherit' }} 
     >
       <img
-        src={`http://localhost:5000/uploads/${product.image}`}
+        src={`${baseUrl}/uploads/${product.image}`}
         alt={product.name}
         className="product-image"
       />

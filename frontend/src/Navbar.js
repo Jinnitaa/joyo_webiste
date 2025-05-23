@@ -1,10 +1,32 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
+import { Link, useLocation } from "react-router-dom";
 import "./Navbar.css";
-import {Globe } from "lucide-react"; 
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [openDropdown, setOpenDropdown] = useState(null);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+  const location = useLocation();
+  const currentPath = location.pathname;
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+      if (window.innerWidth > 768) {
+        setOpenDropdown(null);
+        setIsOpen(false);
+      }
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const handleDropdownClick = (name) => {
+    if (isMobile) {
+      setOpenDropdown((prev) => (prev === name ? null : name));
+    }
+  };
 
   return (
     <nav className="navbar">
@@ -13,30 +35,77 @@ const Navbar = () => {
         <button className="menu-icon" onClick={() => setIsOpen(!isOpen)}>
           {isOpen ? <X /> : <Menu />}
         </button>
+
         <ul className={`nav-links ${isOpen ? "open" : ""}`}>
-          <li><a href="/">About Us</a></li>
-          <li className="dropdown">
-            <a href="#solution">Solution</a>
-            <ul className="dropdown-menu">
-              <li><a href="/residence"> Residential Solar PV Installation</a></li>
-              <li><a href="/commercial">Commercial Solar PV Installation</a></li>
-              <li><a href="/household">Household PV Energy Storage</a></li>
-              <li><a href="/industrial">Commercial and Industrial PV Energy </a></li>
-              <li><a href="/solar-micro">Solar Micro-grid System </a></li>
+          <li>
+            <Link to="/" className={currentPath === "/" ? "active" : ""}>
+              ABOUT US
+            </Link>
+          </li>
+
+          <li
+            className={`dropdown ${
+              openDropdown === "solution" ? "open-dropdown" : ""
+            } ${
+              currentPath.includes("/residence") ||
+              currentPath.includes("/commercial") ||
+              currentPath.includes("/household") ||
+              currentPath.includes("/industrial") ||
+              currentPath.includes("/solar-micro")
+                ? "active"
+                : ""
+            }`}
+            onClick={(e) => handleDropdownClick("solution")}
+            onMouseEnter={() => !isMobile && setOpenDropdown("solution")}
+            onMouseLeave={() => !isMobile && setOpenDropdown(null)}
+          >
+            <Link to="#">SOLUTION</Link>
+            <ul className={`dropdown-menu ${openDropdown === "solution" ? "open" : ""}`}>
+              <li><Link to="/residence">Residential Solar PV Installation</Link></li>
+              <li><Link to="/commercial">Commercial Solar PV Installation</Link></li>
+              <li><Link to="/household">Household PV Energy Storage</Link></li>
+              <li><Link to="/industrial">Commercial and Industrial PV Energy</Link></li>
+              <li><Link to="/solar-micro">Solar Micro-grid System</Link></li>
             </ul>
           </li>
-          <li className="dropdown">
-            <a>Product</a>
-            <ul className="dropdown-menu">
-              <li><a href="/inverter"> Energy storage Inverter</a></li>
-              <li><a href="/battery">Batery</a></li>
-              <li><a href="/pv-module">PV Module</a></li>
+
+          <li
+            className={`dropdown ${
+              openDropdown === "product" ? "open-dropdown" : ""
+            } ${
+              currentPath.includes("/inverter") ||
+              currentPath.includes("/battery") ||
+              currentPath.includes("/pv-module")
+                ? "active"
+                : ""
+            }`}
+            onClick={(e) => handleDropdownClick("product")}
+            onMouseEnter={() => !isMobile && setOpenDropdown("product")}
+            onMouseLeave={() => !isMobile && setOpenDropdown(null)}
+          >
+            <Link to="#">PRODUCT</Link>
+            <ul className={`dropdown-menu ${openDropdown === "product" ? "open" : ""}`}>
+              <li><Link to="/inverter">Energy storage Inverter</Link></li>
+              <li><Link to="/battery">Battery</Link></li>
+              <li><Link to="/pv-module">PV Module</Link></li>
             </ul>
           </li>
-          <li><a href="/case">Case</a></li>
-          <li><a href="/faq">FAQ</a></li>
-          <li><a href="/contact-us">Contact</a></li>
-          <li><a href="/language"><Globe /> </a></li>
+
+          <li>
+            <Link to="/case" className={currentPath === "/case" ? "active" : ""}>
+              CASE
+            </Link>
+          </li>
+          <li>
+            <Link to="/faq" className={currentPath === "/faq" ? "active" : ""}>
+              FAQ
+            </Link>
+          </li>
+          <li>
+            <Link to="/contact-us" className={currentPath === "/contact-us" ? "active" : ""}>
+              CONTACT
+            </Link>
+          </li>
         </ul>
       </div>
     </nav>

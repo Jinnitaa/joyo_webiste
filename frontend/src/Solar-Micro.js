@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import "./solar.css";
+import { Link } from 'react-router-dom';
 
 const Micro = () => {
   useEffect(() => {
@@ -22,15 +23,18 @@ const Micro = () => {
           <p>
             Save The Earth While Unlocking Greater Cost Savings. Install solar panels, inverter, and batteries at your home. Save costs and sell back surplus electricity to the grid.
           </p>
+          <br></br>
           {/* Button */}
-          <button className="solar-button">Get a Free Quote</button>
+          <Link to="/contact-us">
+                   <button className="solar-button">Get a Free Quote</button>
+                 </Link>
         </div>
       </div>
       <div className="grey-line"></div>
       <div className="features-container2" data-aos="fade-up">
         <div className="text-section">
           <div className="green-line"></div>
-          <h1>Diesel Generator Companion</h1>
+          <h2>Diesel Generator Companion</h2>
           <p>
           AOFEI seek to achieve “diesel generator’s 2.0 era” through “diesel generator companion” which improves efficiency by optimizing energy consumption based on variable load usage. This environmental preservation effort helps businesses realize direct cost savings while reducing diesel usage, noise pollution and carbon emission.
           </p>
@@ -84,37 +88,69 @@ const Micro = () => {
       </div>
       </div>
 
-      <section className="image-section">
+      <section className="image-section"  data-aos="fade-up">
       <div className="section-header">
       Operation Mode
       </div>
 
-      <div className="image1-container">
-        <div className="image1-card">
-          <div className="overlay">
-            <span className="large-text" data-aos="fade-up">Small scale</span>
-            <span className="small-text" data-aos="fade-up" data-aos-offset="100">Farm/Construction Site</span>
-          </div>
-          <img src="/images/1.jpg" alt="Image 1" />
-        </div>
-        <div className="image1-card">
-          <div className="overlay">
-            <span className="large-text" data-aos="fade-up">Medium scale</span>
-            <span className="small-text" data-aos="fade-up" data-aos-offset="100">Island</span>
-          </div>
-          <img src="/images/2.jpg" alt="Image 2" />
-        </div>
-        <div className="image1-card">
-          <div className="overlay">
-            <span className="large-text" data-aos="fade-up">Large scale</span>
-            <span className="small-text" data-aos="fade-up "data-aos-offset="100">Mines/Factories In Underdeveloped Areas</span>
-          </div>
-          <img src="/images/3.jpg" alt="Image 3" />
-        </div>
+       <div className="card-wrapper-container">
+    <div className="card-wrapper">
+      <img 
+  src="/images/1.jpg" 
+  alt="Image 1" 
+  style={{ 
+    display: 'block', 
+    width: '100%', 
+    height: '100%', 
+    objectFit: 'cover', 
+    objectPosition: 'center' 
+  }} 
+/>
+      <div className="overlay-text"  data-aos="flip-up">
+        <span className="overlay-number">Small Scale </span>
+        <span className="overlay-label">Farm Construction Site</span>
       </div>
+    </div>
+
+    <div className="card-wrapper">
+    <img 
+  src="/images/2.jpg" 
+  alt="Image 1" 
+  style={{ 
+    display: 'block', 
+    width: '100%', 
+    height: '100%', 
+    objectFit: 'cover', 
+    objectPosition: 'center' 
+  }} 
+/>
+      <div className="overlay-text"  data-aos="flip-up">
+        <span className="overlay-number">Medium Scale</span>
+        <span className="overlay-label">Island</span>
+      </div>
+    </div>
+
+    <div className="card-wrapper">
+     <img 
+  src="/images/3.jpg" 
+  alt="Image 1" 
+  style={{ 
+    display: 'block', 
+    width: '100%', 
+    height: '100%', 
+    objectFit: 'cover', 
+    objectPosition: 'center' 
+  }} 
+/>
+      <div className="overlay-text"  data-aos="flip-up">
+        <span className="overlay-number">Large</span>
+        <span className="overlay-label">Mines/Factories In Underdeveloped Areas</span>
+      </div>
+    </div>
+  </div>
 
     </section>
-    <div className="solar-diagram"> <img src="/images/bg11.png" alt="Image 3" /></div>
+    <div className="solar-diagram"  data-aos="flip-up"> <img src="/images/bg11.png" alt="Image 3" /></div>
    
 
     </div>

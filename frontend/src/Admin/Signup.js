@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './Signup.css'; // <- import the CSS file
+import './Signup.css'; 
 const baseURL = process.env.REACT_APP_API_BASE_URL;
 function AdminSignup() {
   const [form, setForm] = useState({ username: '', password: '', signupKey: '' });

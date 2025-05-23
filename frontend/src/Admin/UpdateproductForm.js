@@ -21,7 +21,7 @@ const ProductUpdateForm = () => {
 
   const [isSidebarOpen, setSidebarOpen] = useState(true);
   const navigate = useNavigate();
-  const { id } = useParams();  // Product ID from URL params
+  const { id } = useParams();  
 
   const toggleSidebar = () => setSidebarOpen(!isSidebarOpen);
 
@@ -30,7 +30,7 @@ const ProductUpdateForm = () => {
     const fetchProduct = async () => {
       try {
         const response = await axios.get(`${baseURL}/api/products/${id}`);
-        setProduct(response.data); // Assuming the response is in the form of a product object
+        setProduct(response.data); 
       } catch (error) {
         console.error('Error fetching product:', error);
         alert('Error fetching product data. Please try again later.');

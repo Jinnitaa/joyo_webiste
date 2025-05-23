@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import "./industrial.css";
+import { Link } from 'react-router-dom';
 
 const ImageSwitcher = () => {
   const [isToggled, setIsToggled] = useState(false);
@@ -16,8 +17,9 @@ const ImageSwitcher = () => {
         src={isToggled ? "/images/k1.png" : "/images/k2.png"}
         alt="Switching Icon"
         className="switcher-image"
+        data-aos="flip-up"
       />
-      <p className="switcher-text">
+      <p className="switcher-text"  data-aos="flip-up">
         {isToggled ? "Interact with smart meters such as the DTSU666-CT from Aofei." : " Each port can communicate with up to 20 inverters in cascading daisy chain. "}
       </p>
       <br/>
@@ -46,7 +48,10 @@ const Industrial = () => {
           <p>
             Save The Earth While Unlocking Greater Cost Savings. Install solar panels, inverter, and batteries at your home. Save costs and sell back surplus electricity to the grid.
           </p>
-          <button className="solar-button">Get a Free Quote</button>
+          <br></br>
+          <Link to="/contact-us">
+           <button className="solar-button">Get a Free Quote</button>
+         </Link>
         </div>
       </div>
 
@@ -64,7 +69,7 @@ const Industrial = () => {
 
       <br />
       <br />
-      <div className="industrial_text">
+      <div className="industrial_text"  data-aos="flip-up">
         <h2>AOFEI C&I PV inverters + DataHub 1000 = Zero Feed-in Control</h2>
       </div>
 
@@ -76,21 +81,21 @@ const Industrial = () => {
           style={{ width: "1000px", display: "block", marginLeft: "0" }}
         />
 
-        <div className="diagram-text diagram-text1">
+        <div className="diagram-text diagram-text1" data-aos="flip-up">
           <div className="icon" style={{ color: "green" }}>➕</div>
           <p>
             All the inverter data can be monitored on Aofei Cloud platform.
           </p>
         </div>
 
-        <div className="diagram-text diagram-text2">
+        <div className="diagram-text diagram-text2" data-aos="flip-up">
           <div className="icon">➕</div>
           <p>
             These plants can be built on building rooftops or open spaces to form self-contained power plants and generate profits by selling excess electricity to the grid.
           </p>
         </div>
 
-        <div className="diagram-text diagram-text3">
+        <div className="diagram-text diagram-text3" data-aos="flip-up">
           <div className="icon">➕</div>
           <p>
             With all C&I inverters connected to the 3 available RS485 ports on DataHub1000, the output power and export power of the whole power plant can be set and controlled in accordance to the site requirements.
@@ -99,7 +104,7 @@ const Industrial = () => {
       </div>
 
       <div className="diagram-wrapper">
-        <div className="image-container">
+        <div className="image-container" data-aos="fade-right">
           <img
             src="/images/bg9.png"
             alt="Diagram"
@@ -107,7 +112,7 @@ const Industrial = () => {
           />
         </div>
 
-        <div className="text-container">
+        <div className="text-container" data-aos="fade-left">
           <div className="text-point text-support">
             <img src="/images/ic1.png" alt="Support Icon" className="icon-img" />
             <p><strong>Support up to <b>60</b> units of on-grid inverters</strong></p>
@@ -125,7 +130,7 @@ const Industrial = () => {
         </div>
       </div>
 
-      {/* Image Switcher Component */}
+     
       <ImageSwitcher />
     </div>
   );

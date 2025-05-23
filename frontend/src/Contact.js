@@ -1,10 +1,16 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from 'react';
 import './contact.css';
 import { FaMapLocation, FaPhone } from "react-icons/fa6";
 import { MdEmail } from "react-icons/md";
 import axios from 'axios';
+import './inverter.css';
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const ContactUs = () => {
+ useEffect(() => {
+          AOS.init({ duration: 1000, once: true }); 
+        }, []); 
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
@@ -46,15 +52,15 @@ const ContactUs = () => {
       className="contact-container"
       style={{ backgroundImage: 'url("/images/bb3.png")' }}
     >
-      <div className="contact-content">
-        <div className="header">
+      <div className="contact-content"  >
+        <div className="header" data-aos="fade-up">
           <h1>Contact Us</h1>
           <p style={{ color: "white" }}>
             Have questions or need assistance? We're here to help! Reach out to us, and we'll get back to you as soon as possible.
           </p>
         </div>
 
-        <div className="contact-info">
+        <div className="contact-info" data-aos="fade-right">
           <div className="info">
             <h4 style={{ color: "#27B964" }}><FaMapLocation /> Address</h4>
             <p>6777 Sugar Camp Road,<br />Owatonna, Minnesota, 55099</p>
@@ -66,7 +72,7 @@ const ContactUs = () => {
             <p>adan@mail.com</p>
           </div>
 
-          <div className="form">
+          <div className="form" data-aos="fade-left">
             <h3>Send Message</h3>
             <form onSubmit={handleSubmit}>
               <input

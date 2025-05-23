@@ -1,3 +1,6 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Libre+Franklin:ital,wght@0,100..900;1,100..900&display=swap');
+
 :root {
   --primary-color: #27B964;
   --bg-light: #f8f9fa;
@@ -12,7 +15,7 @@ body {
   background-color: var(--bg-light);
   margin: 0;
   padding: 0;
-  font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+ font-family: 'Libre Franklin', sans-serif;
 }
 
 .product-container {
@@ -62,14 +65,14 @@ body {
 }
 
 .product-description {
-  font-size: 16px ;
+  font-size: 18px ;
   margin-bottom: 12px;
   color: var(--text-muted);
   line-height: 1.6;
 }
 
 .product-detail {
-  font-size: 14px;
+  font-size: 16px;
   line-height: 1.7;
   text-align: justify;
   color: #444;
@@ -121,13 +124,19 @@ body {
   display: flex;
   align-items: center;
   gap: 10px;
-  font-size: 14px;
+  font-size: 16px;
   margin-bottom: 10px;
   color: #333;
   transition: background 0.3s ease;
   padding: 8px 12px;
   border-radius: 8px;
 }
+.feature-block li{
+  font-size: 16px;
+  color: #333;
+
+}
+
 
 .feature-point:hover {
   background-color: var(--accent-bg);
@@ -153,7 +162,7 @@ body {
 .product-function td {
   padding: 16px 20px;
   text-align: left;
-   font-size:14px;
+   font-size:16px;
   color: #444;
 }
 
@@ -172,8 +181,8 @@ body {
   background-color: #e8eee8;
 }
 
-/* Tablet (max-width: 1024px) and smaller */
-@media (max-width: 1024px) {
+
+@media (max-width: 700px) {
   .product-container,
   .product-title,
   .product-description,
@@ -201,4 +210,9 @@ body {
   .product-function td {
     padding: 12px 16px;
   }
+  .feature-block li{
+  font-size: 14px;
+  color: #333;
+
+}
 }

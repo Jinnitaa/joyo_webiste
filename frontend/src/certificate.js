@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./home.css";
-
 const baseURL = process.env.REACT_APP_API_BASE_URL;
 const Certificate = () => {
   const [slideIndex, setSlideIndex] = useState(0);
   const [certificates, setCertificates] = useState([]);
   const [loading, setLoading] = useState(false);
   const slidesPerView = 4;
-const API_BASE_URL = process.env.REACT_APP_API_URL;
+  
   useEffect(() => {
 
     const fetchCertificates = async () => {
@@ -17,14 +16,14 @@ const API_BASE_URL = process.env.REACT_APP_API_URL;
        const response = await axios.get(`${baseURL}/api/qualifications`);
         console.log("Fetched certificates:", response.data);
 
-        // Ensure the response is an array before setting state
+      
         if (Array.isArray(response.data)) {
           setCertificates(response.data);
         } else if (Array.isArray(response.data.data)) {
           setCertificates(response.data.data);
         } else {
           console.error("Unexpected response format:", response.data);
-          setCertificates([]); // Fallback to empty array
+          setCertificates([]); 
         }
       } catch (error) {
         console.error("Failed to fetch certificates:", error);
@@ -77,7 +76,7 @@ const API_BASE_URL = process.env.REACT_APP_API_URL;
             certificates.map((cert, index) => (
               <div key={index} className="slide">
                 <img
-                  src={`${baseURL}uploads/${cert.image}`}
+                 src={`${baseURL}/uploads/${cert.image}`}
                   alt={`Certificate ${index + 1}`}
                   width="100"
                   height="100"

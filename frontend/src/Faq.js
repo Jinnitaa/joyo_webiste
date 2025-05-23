@@ -2,9 +2,14 @@ import React, { useState, useEffect } from 'react';
 import './faq.css';
 import { CgMathPlus } from "react-icons/cg";
 import axios from 'axios';
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const baseURL = process.env.REACT_APP_API_BASE_URL;
 const CustomerFaq = () => {
+useEffect(() => {
+          AOS.init({ duration: 1000, once: true });
+        }, []); 
   const [activeIndex, setActiveIndex] = useState(null);
   const [faqs, setFaqs] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
@@ -30,9 +35,9 @@ const CustomerFaq = () => {
   );
 
   return (
-    <div className="faq-container">
+    <div className="faq-container" >
       {/* Header */}
-      <div className="faq-header">
+      <div className="faq-header"  data-aos="fade-up">
         <h1>How can we help you?</h1>
         <p>Browse our FAQ page for answers to common questions. If you need further assistance, feel free to reach out!</p>
         <form className="faq-search" onSubmit={(e) => e.preventDefault()}>
@@ -52,7 +57,7 @@ const CustomerFaq = () => {
       </div>
 
       {/* FAQ List */}
-      <div className="faq-card">
+      <div className="faq-card"  data-aos="fade-up">
         <h2>Frequently Asked Questions</h2>
 
         {filteredFaqs.map((faq, index) => (
@@ -69,17 +74,17 @@ const CustomerFaq = () => {
           </div>
         ))}
       </div>
-{/* How Solar Works Section */}
+
 <div className="solar-works">
         <h2>How Solar Works ?</h2>
-        <div className="solar-content">
+        <div className="solar-content"  data-aos="fade-right">
           <img
             src="/images/s8.png" 
             alt="How Solar Works Diagram"
             className="solar-image"
           />
-          <div className="solar-steps">
-            <div className="solar-step">
+          <div className="solar-steps"  >
+            <div className="solar-step" >
               <strong>Step 1:</strong> Direct current (DC) electricity is generated when sunlight hits the solar panel.
             </div>
             <div className="solar-step">

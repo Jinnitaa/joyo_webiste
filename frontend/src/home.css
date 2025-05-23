@@ -8,7 +8,7 @@
   align-items: center;
   width: 100%;
   padding: 20px;
-  margin-top: 80px;
+  margin-top: 50px;
   font-family: 'Libre Franklin', sans-serif;
   font-size: 16px;
 
@@ -177,14 +177,10 @@
   }
 }
 
-/* Section 2 */
-
 .image-section {
   margin-top: 40px;
   padding: 30px;
   text-align: center;
-  clear: both; 
-  position: relative; 
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -197,90 +193,109 @@
   font-weight: bold;
   color: #787878;
   margin-bottom: 30px;
-  border-bottom: 3px solid #0D8B08; 
-  display: inline-block; 
-  padding-bottom: 5px; 
+  border-bottom: 3px solid #0D8B08;
+  display: inline-block;
+  padding-bottom: 5px;
 }
 
-.image1-container {
+.card-wrapper-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-   overflow: visible !important;
-  gap: 30px; 
+  gap: 30px;
   width: 100%;
   max-width: 1200px;
   margin: 30px auto;
-  padding: 0 20px; 
+  padding: 0 20px;
 }
 
-.image1-card {
+.card-wrapper {
   position: relative;
-  flex: 1 1 30%; 
-  min-width: 300px; 
-  max-height: 400px;
-  overflow: visible !important;
+  flex: 1 1 30%;
+  max-width: 320px;
+  height: 250px;
+  aspect-ratio: 300 / 205;
   border-radius: 12px;
-  display: flex;
-  align-items: stretch;
-  justify-content: center;
-}
-
-.image1-card img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  z-index: 1;
-  
-}
-
-.image1-card:hover img {
-  transform: scale(1.05);
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
   transition: transform 0.3s ease;
 }
 
-.overlay {
+.card-wrapper:hover {
+  transform: scale(1.03);
+}
+
+.card-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  border-radius: 12px;
+}
+
+.overlay-text {
   position: absolute;
-  z-index: 10;
-  color: white;
   bottom: 20px;
   left: 20px;
+  color: white;
+  z-index: 2;
+  text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.7);
+  text-align: left;
 }
 
-.largee-text {
+.overlay-number {
   font-family: 'Libre Franklin', sans-serif;
   font-size: 2.3rem;
-  color: white;
   font-weight: bold;
-  margin-bottom: 10px;
-  text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.7);
+  display: block;
 }
 
-.smalll-text {
+.overlay-label {
   font-family: 'Libre Franklin', sans-serif;
   font-size: 1.2rem;
-  font-weight: bold;
-  color: white;
-  text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.7);
+  font-weight: 600;
 }
 
-@media (max-width: 1024px) {
-  .image-container {
-    grid-template-columns: repeat(2, 1fr); 
+/* Media Query for Tablets (768px to 1024px) */
+@media (max-width: 1024px) and (min-width: 768px) {
+  .card-wrapper {
+    flex: 1 1 45%; /* two per row */
+    max-width: 100%;
+    height: 180px;
+  }
+
+  .overlay-number {
+    font-size: 2rem;
+  }
+
+  .overlay-label {
+    font-size: 1rem;
   }
 }
 
-@media (max-width: 768px) {
-  .image-container {
-    grid-template-columns: 1fr;
+/* Media Query for Phones (below 768px) */
+@media (max-width: 767px) {
+  .card-wrapper-container {
+    gap: 15px;
+    padding: 0 10px;
   }
 
-  .image-card {
-    height: 250px; 
+  .card-wrapper {
+    flex: 1 1 100%; /* full width */
+    max-width: 100%;
+    height: 160px;
+  }
+
+  .overlay-number {
+    font-size: 1.6rem;
+  }
+
+  .overlay-label {
+    font-size: 0.9rem;
   }
 }
-
 
 
 .container3 {
@@ -537,11 +552,16 @@
   font-size: 16px;
 }
 
+.footer-item p {
+  color:white;
+}
+
+
 .footer-text {
   max-width: 400px;
   font-size: 14px;
   line-height: 1.6;
-  color: #ddd;
+  color: white;
 }
 
 .footer-copyright {
@@ -617,12 +637,12 @@
 
 .vision-item h2 {
   margin: 0;
-  font-size: 20px;
+  font-size: 16px;
 }
 
 .vision-item p {
   margin: 5px 0 0;
-  font-size: 16px;
+  font-size: 14px;
   color: white;
 }
 
@@ -632,6 +652,7 @@
     height: auto;
     padding-left: 3%;
     padding-right: 3%;
+
   }
 
   .text-overlay1 {
@@ -640,7 +661,7 @@
   }
 
   .text-overlay1 h2 {
-    font-size: 2rem;
+    font-size: 32px;;
     text-align: center;
   }
 
@@ -658,7 +679,7 @@
   }
 
   .vision-item h2 {
-    font-size: 18px;
+    font-size: 16px;
   }
 
   .vision-item p {

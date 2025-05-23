@@ -2,8 +2,15 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './inverter.css';
 import { Link } from 'react-router-dom'; 
+import AOS from "aos";
+import "aos/dist/aos.css";
 
+const baseUrl = process.env.REACT_APP_API_BASE_URL;
 const Battery = () => {
+useEffect(() => {
+              AOS.init({ duration: 1000, once: true }); // Initialize AOS
+            }, []); 
+
   const sectionStyle = {
     backgroundImage: 'url("/images/bb1.png")', // image must be in public/images folder
     backgroundSize: 'cover',
@@ -23,7 +30,7 @@ const Battery = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/products'); // adjust your endpoint
+        const response = await axios.get(`${baseUrl}/api/products`); // adjust your endpoint
         const inverterProducts = response.data.filter(product => product.category === 'Battery');
         setProducts(inverterProducts);
       } catch (err) {
@@ -44,15 +51,15 @@ const Battery = () => {
   return (
     <>
       <div className="inverter-section" style={sectionStyle}>
-        <div className="inverter-text">
+        <div className="inverter-text"  data-aos="flip-right">
           <h2>Battery</h2>
           <p>
           The Triple Power Battery is available in various forms, including independent units for standalone applications, rack-mounted configurations for efficient space utilization, and stackable options for scalable energy storage systems. Whether it's low voltage or high voltage installations, this battery seamlessly integrates into different setups, providing unmatched adaptability.
           </p>
         </div>
       </div>
+       <div className="grey-line"></div>
 
-      {/* Products Section */}
       <div className="products-section">
         <h2 className="products-title">Products</h2>
         <div className="products-line" />
@@ -62,10 +69,11 @@ const Battery = () => {
       to={`/product/${product._id}`} 
       className="product-card" 
       key={product._id} 
-      style={{ textDecoration: 'none', color: 'inherit' }} // Optional styling to keep it clean
+      style={{ textDecoration: 'none', color: 'inherit' }} 
+      data-aos="flip-up"
     >
       <img
-        src={`http://localhost:5000/uploads/${product.image}`}
+        src={`${baseUrl}/uploads/${product.image}`}
         alt={product.name}
         className="product-image"
       />

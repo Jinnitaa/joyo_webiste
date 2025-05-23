@@ -7,7 +7,7 @@ import "aos/dist/aos.css";
 
 const ProfileCards = () => {
   useEffect(() => {
-    AOS.init({ duration: 1000, once: true }); // Initialize AOS
+    AOS.init({ duration: 1000, once: true }); 
   }, []);
 
   const slides = [
@@ -62,29 +62,61 @@ const ProfileCards = () => {
           ))}
         </div>
       </div>
- <section className="image-section">
+<section className="image-section">
   <div className="section-header">Performance</div>
 
-  <div className="image1-container">
-    <div className="image1-card">
-      <img src="/images/l1.jpg" alt="Image 1" />
-      <div className="overlay">
-        <span >20</span>
-        <span className="small-text">Cover Countries/Regions</span>
+  <div className="card-wrapper-container">
+    <div className="card-wrapper">
+      <img 
+  src="/images/l1.jpg" 
+  alt="Image 1" 
+  style={{ 
+    display: 'block', 
+    width: '100%', 
+    height: '100%', 
+    objectFit: 'cover', 
+    objectPosition: 'center' 
+  }} 
+/>
+      <div className="overlay-text" data-aos="fade-up" data-aos-offset="100">
+        <span className="overlay-number">20</span>
+        <span className="overlay-label">Cover Countries/Regions</span>
       </div>
     </div>
-    <div className="image1-card">
-      <img src="/images/l2.jpg" alt="Image 2" />
-      <div className="overlay">
-        <span className="large-text" data-aos="fade-up">240</span>
-        <span className="small-text" data-aos="fade-up" data-aos-offset="100">Solar Power Plants</span>
+
+    <div className="card-wrapper">
+    <img 
+  src="/images/l2.jpg" 
+  alt="Image 1" 
+  style={{ 
+    display: 'block', 
+    width: '100%', 
+    height: '100%', 
+    objectFit: 'cover', 
+    objectPosition: 'center' 
+  }} 
+/>
+      <div className="overlay-text" data-aos="fade-up" data-aos-offset="100">
+        <span className="overlay-number">240</span>
+        <span className="overlay-label">Solar Power Plants</span>
       </div>
     </div>
-    <div className="image1-card">
-      <img src="/images/l3.jpg" alt="Image 3" />
-      <div className="overlay">
-        <span className="large-text">400MWp</span>
-        <span className="small-text" data-aos="fade-up" data-aos-offset="100">Capacities</span>
+
+    <div className="card-wrapper">
+     <img 
+  src="/images/I5.jpg" 
+  alt="Image 1" 
+  style={{ 
+    display: 'block', 
+    width: '100%', 
+    height: '100%', 
+    objectFit: 'cover', 
+    objectPosition: 'center' 
+  }} 
+/>
+      <div className="overlay-text" data-aos="fade-up" data-aos-offset="100">
+        <span className="overlay-number">400MWp</span>
+        <span className="overlay-label">Capacities</span>
       </div>
     </div>
   </div>
@@ -93,7 +125,7 @@ const ProfileCards = () => {
 
 
     
-{/* Section with background image */}
+
 
 <div className="section-header" style={{ 
     display: "flex",

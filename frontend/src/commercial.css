@@ -75,6 +75,7 @@
   .solar-button {
     font-size: 14px;
     padding: 10px 18px;
+    width:200px;
   }
 }
 
@@ -94,6 +95,7 @@
   .solar-button {
     font-size: 12px;
     padding: 8px 16px;
+    width:150px;
   }
 }
 
@@ -152,6 +154,10 @@
   
     .feature-item {
       flex-direction: column;
+    }
+
+    .feature-item p{
+      font-size: 14px;
     }
   
     .features-image img {
@@ -226,7 +232,7 @@
 }
 
 .pricing-header {
-  font-size: 22px;
+  font-size: 20px;
   font-weight: bold;
 }
 
@@ -305,5 +311,17 @@
     flex-direction: column;
     align-items: center;
   }
+  .pricing-description {
+  font-size: 14px;
+}
+.pricing-list li {
+  font-size: 14px;
+ 
+}
+
+.pricing-header {
+  font-size: 18px
+}
+
 }
 

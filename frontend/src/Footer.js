@@ -1,5 +1,8 @@
 import React from "react";
-import "./home.css"; // Import the CSS file
+import "./home.css";
+import { IoTimeSharp } from "react-icons/io5";
+import { FaPhoneAlt } from "react-icons/fa";
+import { MdEmail } from "react-icons/md";
 
 const Footer = () => {
   return (
@@ -9,15 +12,15 @@ const Footer = () => {
         <div className="footer-section left">
           <h3>Operation Hours</h3>
           <div className="footer-item">
-            <span className="icon">🕒</span>
+            <span className="icon"><IoTimeSharp style={{ color: "whitesmoke" }} /></span>
             <p>09:00 - 18:00</p>
           </div>
           <div className="footer-item">
-            <span className="icon">📞</span>
+            <span className="icon"><FaPhoneAlt  style={{ color: "whitesmoke" }} /></span>
             <p>Phone number</p>
           </div>
           <div className="footer-item">
-            <span className="icon">📧</span>
+            <span className="icon"><MdEmail  style={{ color: "whitesmoke" }} /></span>
             <p>Email</p>
           </div>
         </div>

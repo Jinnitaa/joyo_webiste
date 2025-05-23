@@ -2,10 +2,16 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './inverter.css';
 import { Link } from 'react-router-dom'; 
+import AOS from "aos";
+import "aos/dist/aos.css";
 
+const baseUrl = process.env.REACT_APP_API_BASE_URL;
 const PV = () => {
+useEffect(() => {
+          AOS.init({ duration: 1000, once: true }); 
+        }, []); 
   const sectionStyle = {
-    backgroundImage: 'url("/images/bb2.png")', // Make sure the image is in public/images
+    backgroundImage: 'url("/images/bb2.png")', 
     backgroundSize: 'cover',
     backgroundPosition: 'center',
     backgroundRepeat: 'no-repeat',
@@ -23,7 +29,7 @@ const PV = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/products');
+        const response = await axios.get(`${baseUrl}/api/products`);
         const pvProducts = response.data.filter(product => product.category === 'PV Module');
         setProducts(pvProducts);
       } catch (err) {
@@ -43,9 +49,11 @@ const PV = () => {
   return (
     <>
       {/* Top Banner Section */}
-      <div className="inverter-section" style={sectionStyle}>
-        <h1 style={{ color: 'white', fontSize: '30px' }}>PV Module</h1>
+      <div className="inverter-section" style={sectionStyle} >
+        <h1 style={{ color: 'white', fontSize: '30px' }} data-aos="fade-up">PV Module</h1>
       </div>
+
+      <div className="grey-line"></div>
 
       {/* Products Section */}
       <div className="products-section">
@@ -59,9 +67,10 @@ const PV = () => {
               className="product-card" 
               key={product._id}
               style={{ textDecoration: 'none', color: 'inherit' }}
+              data-aos="flip-up"
             >
               <img
-                src={`http://localhost:5000/uploads/${product.image}`}
+                src={`${baseUrl}/uploads/${product.image}`}
                 alt={product.name}
                 className="product-image"
               />

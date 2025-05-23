@@ -2,10 +2,11 @@ import React, { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import "./commercial.css";
+import { Link } from 'react-router-dom';
 
 const Commercial = () => {
     useEffect(() => {
-        AOS.init({ duration: 1000, once: true }); // Initialize AOS
+        AOS.init({ duration: 1000, once: true }); 
       }, []); 
       const phases = [
         { title: "Step 1", description: "Consultation & Assessment", icon: "/images/s7.png" },
@@ -24,12 +25,14 @@ const Commercial = () => {
           backgroundImage: "url('/images/bg4.png')",
         }}
       >
-         {/* Overlay Text */}
+      
          <div className="text-overlay2" data-aos="fade-up">
           <h2>Commercial Solar Installation</h2>
           <p>Save The Earth While Unlocking Greater Cost Savings. Install solar panels, inverter and batteries at your home. Save costs and sell back surplus electricity back to the grid.</p>
           <br></br>{/* Button */}
-        <button className="solar-button">Get a Free Quote</button>
+        <Link to="/contact-us">
+  <button className="solar-button">Get a Free Quote</button>
+</Link>
         </div>
 
  
@@ -79,7 +82,7 @@ const Commercial = () => {
      <h2 className="section-header" data-aos="fade-up">Pricing</h2>
       <div className="pricing-boxes">
         {/* MSPPA Box */}
-        <div className="pricing-box mspa-box">
+        <div className="pricing-box mspa-box" data-aos="flip-left">
           <h3 className="pricing-header">MSPPA</h3>
           <p className="pricing-subtitle">Affordable & Hassle-free</p>
           <p className="pricing-highlight">Higher monthly discounts</p>
@@ -105,11 +108,13 @@ const Commercial = () => {
               Minimum energy guarantee
             </li>
           </ul>
+             <Link to="/contact-us">
           <button className="quote-button mspa-button">Get a Free Quote</button>
+          </Link>
         </div>
 
         {/* Upfront Purchase Box */}
-        <div className="pricing-box upfront-box">
+        <div className="pricing-box upfront-box" data-aos="flip-right">
           <h3 className="pricing-header">Upfront Purchase</h3>
           <p className="pricing-description">
             Pay upfront, own your system, enjoy savings and earn passive income from excess solar energy generated!
@@ -129,7 +134,9 @@ const Commercial = () => {
               Subsequent maintenance to be arranged separately at owners’ costs
             </li>
           </ul>
+           <Link to="/contact-us">
           <button className="quote-button upfront-button">Get a Free Quote</button>
+           </Link>
         </div>
       </div>
     </div>
